@@ -31,7 +31,7 @@
           <mat-form-field appearance="outline">
             <mat-label>Usuario</mat-label>
             <input matInput placeholder="Agregar usuario" formControlName="userName">
-            <mat-icon matSuffix>cancel</mat-icon>
+            <mat-icon matSuffix>person</mat-icon>
             <mat-hint>supporting-text</mat-hint>
           </mat-form-field>
 
@@ -52,8 +52,8 @@
         <div class="input-wrapper">
           <mat-form-field appearance="outline">
             <mat-label>Password</mat-label>
-            <input matInput placeholder="Agregar contraseña" formControlName="password">
-            <mat-icon matSuffix>cancel</mat-icon>
+            <input matInput [type]="showPassword ? 'text' : 'password'" formControlName="password">
+            <mat-icon matSuffix>visibility</mat-icon>
             <mat-hint>supporting-text</mat-hint>
           </mat-form-field>
 
