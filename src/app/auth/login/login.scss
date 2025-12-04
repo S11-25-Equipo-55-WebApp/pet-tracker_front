@@ -372,3 +372,22 @@ $white: #FFFFFF;
   outline: 2px solid $primary-color;
   outline-offset: 2px;
 }
+
+
+.example-container mat-form-field + mat-form-field {
+  margin-left: 8px;
+}
+
+.example-right-align {
+  text-align: right;
+}
+
+input.example-right-align::-webkit-outer-spin-button,
+input.example-right-align::-webkit-inner-spin-button {
+  display: none;
+}
+
+input.example-right-align {
+  appearance: textfield;
+  -moz-appearance: textfield;
+}
