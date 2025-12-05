@@ -27,8 +27,8 @@ export class AuthService {
   token = computed<string | null>(() => this._token());
 
 
-  register(userName: string, Nombre: string, Apellido: string, Email: string, password: string, Telefono: string): Observable<boolean> {
-    return this.authHttp.post<AuthResponse>(`${baseUrl}/api/Usuario`, { userName, Nombre, Apellido, Email, password, Telefono })
+  register(userName: string, nombre: string, apellido: string, email: string, password: string, telefono: string): Observable<boolean> {
+    return this.authHttp.post<AuthResponse>(`${baseUrl}/api/Usuario`, { userName, nombre, apellido, email, password, telefono })
     .pipe(
       tap(({ user, token }) => this.handleAuthSuccess({ user, token })),
       map(() => true),

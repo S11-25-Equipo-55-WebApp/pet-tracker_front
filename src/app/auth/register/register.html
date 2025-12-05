@@ -1,1 +1,198 @@
-<p>register works!</p>,
+<div class="login-container">
+  <!-- Header -->
+  <header class="header">
+    <button class="back-button" (click)="goBack()" aria-label="Volver">
+      <svg width="24" height="24" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2">
+        <path d="M19 12H5M12 19l-7-7 7-7"/>
+      </svg>
+    </button>
+
+    <button matIconButton class="menu-button">
+      <mat-icon>menu</mat-icon>
+    </button>
+  </header>
+
+  <!-- Main Content -->
+  <main class="main-content">
+    <!-- Logo Section -->
+    <div class="logo-section">
+      <div class="logo-circle">
+        <img src="/images/logo.png" alt="">
+      </div>
+      <h2 class="app-title">Pet Health Tracker</h2>
+      <p class="app-subtitle">Registro de usuarios</p>
+    </div>
+
+    <!-- Login Form -->
+    <form [formGroup]="registerForm" (ngSubmit)="onSubmit()" class="login-form">
+      <!-- Username Field -->
+      <div class="form-group">
+        <div class="input-wrapper">
+          <mat-form-field appearance="outline">
+            <mat-label>Usuario</mat-label>
+            <input matInput placeholder="Agregar usuario" formControlName="userName">
+            <mat-icon matSuffix>person</mat-icon>
+            <mat-hint>supporting-text</mat-hint>
+          </mat-form-field>
+
+          <button
+            type="button"
+            class="clear-button"
+            *ngIf="registerForm.get('username')?.value"
+            (click)="registerForm.get('username')?.setValue('')"
+            aria-label="Limpiar campo"
+          >
+          </button>
+        </div>
+        <span class="error-message" *ngIf="usernameError">{{ usernameError }}</span>
+      </div>
+
+      <!-- Name Field -->
+      <div class="form-group">
+        <div class="input-wrapper">
+          <mat-form-field appearance="outline">
+            <mat-label>Nombre</mat-label>
+            <input matInput placeholder="Agregar usuario" formControlName="nombre">
+            <mat-icon matSuffix>person</mat-icon>
+            <mat-hint>supporting-text</mat-hint>
+          </mat-form-field>
+
+          <button
+            type="button"
+            class="clear-button"
+            *ngIf="registerForm.get('username')?.value"
+            (click)="registerForm.get('username')?.setValue('')"
+            aria-label="Limpiar campo"
+          >
+          </button>
+        </div>
+        <span class="error-message" *ngIf="usernameError">{{ usernameError }}</span>
+      </div>
+
+      <!-- LastName Field -->
+      <div class="form-group">
+        <div class="input-wrapper">
+          <mat-form-field appearance="outline">
+            <mat-label>Apellido</mat-label>
+            <input matInput placeholder="Agregar usuario" formControlName="apellido">
+            <mat-icon matSuffix>person</mat-icon>
+            <mat-hint>supporting-text</mat-hint>
+          </mat-form-field>
+
+          <button
+            type="button"
+            class="clear-button"
+            *ngIf="registerForm.get('username')?.value"
+            (click)="registerForm.get('username')?.setValue('')"
+            aria-label="Limpiar campo"
+          >
+          </button>
+        </div>
+        <span class="error-message" *ngIf="usernameError">{{ usernameError }}</span>
+      </div>
+
+      <!-- Email Field -->
+      <div class="form-group">
+        <div class="input-wrapper">
+          <mat-form-field appearance="outline">
+            <mat-label>Correo</mat-label>
+            <input matInput placeholder="Agregar usuario" formControlName="email">
+            <mat-icon matSuffix>email</mat-icon>
+            <mat-hint>supporting-text</mat-hint>
+          </mat-form-field>
+
+          <button
+            type="button"
+            class="clear-button"
+            *ngIf="registerForm.get('username')?.value"
+            (click)="registerForm.get('username')?.setValue('')"
+            aria-label="Limpiar campo"
+          >
+          </button>
+        </div>
+        <span class="error-message" *ngIf="usernameError">{{ usernameError }}</span>
+      </div>
+
+      <!-- Password Field -->
+      <div class="form-group">
+        <div class="input-wrapper">
+          <mat-form-field appearance="outline">
+            <mat-label>Password</mat-label>
+            <input matInput [type]="showPassword ? 'text' : 'password'" formControlName="password">
+            <mat-icon matSuffix>visibility</mat-icon>
+            <mat-hint>supporting-text</mat-hint>
+          </mat-form-field>
+
+          <button
+            type="button"
+            class="toggle-password"
+            (click)="togglePasswordVisibility('password')"
+            aria-label="Mostrar/Ocultar contraseña"
+          >
+          </button>
+        </div>
+        <span class="error-message" *ngIf="passwordError">{{ passwordError }}</span>
+      </div>
+
+      <!-- Phone Field -->
+      <div class="form-group">
+        <div class="input-wrapper">
+          <mat-form-field appearance="outline">
+            <mat-label>Telefono</mat-label>
+            <input matInput placeholder="Agregar usuario" formControlName="telefono">
+            <mat-icon matSuffix>phone</mat-icon>
+            <mat-hint>supporting-text</mat-hint>
+          </mat-form-field>
+
+          <button
+            type="button"
+            class="clear-button"
+            *ngIf="registerForm.get('username')?.value"
+            (click)="registerForm.get('username')?.setValue('')"
+            aria-label="Limpiar campo"
+          >
+          </button>
+        </div>
+        <span class="error-message" *ngIf="usernameError">{{ usernameError }}</span>
+      </div>
+
+      <!-- Submit Button -->
+      <button
+        type="submit"
+        class="submit-button"
+        [disabled]="isLoading || registerForm.invalid"
+        [class.loading]="isLoading"
+      >
+        <span *ngIf="!isLoading" class="button-content">
+          <mat-icon matSuffix>stars</mat-icon>
+          Registrar
+        </span>
+        <span *ngIf="isLoading" class="spinner"></span>
+      </button>
+
+      <!-- Register Link -->
+      <div class="register-section">
+        <button type="button" class="register-link" (click)="navigateToRegister()">
+          Registrarse
+        </button>
+        <p class="register-question">¿Olvidó su contraseña?</p>
+      </div>
+    </form>
+
+  </main>
+  <!-- Bottom Navigation -->
+  <nav class="bottom-nav">
+    <button class="nav-item" aria-label="Inicio">
+      <mat-icon matSuffix>home</mat-icon>
+    </button>
+    <button class="nav-item" aria-label="Usuarios">
+      <mat-icon matSuffix>pets</mat-icon>
+    </button>
+    <button class="nav-item" aria-label="Perfil">
+      <mat-icon matSuffix>3p</mat-icon>
+    </button>
+    <button class="nav-item" aria-label="Galería">
+      <mat-icon matSuffix>person</mat-icon>
+    </button>
+  </nav>
+</div>
