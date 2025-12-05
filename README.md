@@ -11,7 +11,7 @@ Click the image above to watch the project demostration.
 
 ## Technologies Used
 
-- **Frontend**: Angular ~ Angular~MAterial ~ SCSS ~ TypeScript ~ Google~Icons.
+- **Frontend**: Angular ~ Angular Material ~ SCSS ~ TypeScript ~ Google ~ Icons.
 
 ## Project Structure ~ Feature Module Angular@20. Pending
 
