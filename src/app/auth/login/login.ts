@@ -43,6 +43,13 @@ export class Login implements OnInit {
     this.initForm();
   }
 
+  // Input Password
+  hide = signal(true);
+  clickEvent(event: MouseEvent) {
+    this.hide.set(!this.hide());
+    event.stopPropagation();
+  }
+
   private initForm(): void {
     this.loginForm = this.fb.group({
       userName: ['', [Validators.required, Validators.minLength(3)]],
