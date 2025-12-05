@@ -4,6 +4,7 @@ import { Home } from './home/home';
 import { Register } from './register/register';
 import { Login } from './login/login';
 import { ResetPassword } from './reset-password/reset-password';
+import { VaccineForm } from '../vaccine/pages/vaccine-form/vaccine-form';
 
 export const authRoutes: Routes = [
   {
@@ -29,6 +30,14 @@ export const authRoutes: Routes = [
         path: 'reset-password',
         title: 'Reset password',
         component: ResetPassword
+      },
+      {
+        path: 'vaccine',
+        title: 'Vaccine',
+        component: VaccineForm
+
+
+
       },
       {
         path: '**',

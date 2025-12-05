@@ -1,4 +1,5 @@
 export interface IMascota {
+    mascotaId?: number;
     nombre: string;
     codigo?: string;
     fechaNacimiento: string,
