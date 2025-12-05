@@ -21,32 +21,27 @@ PENDING....
 
 1. User Management
 
-Register and log in with email and password.
-Password recovery option.
+  Register and log in with email and password. Password recovery option.
 
 2. Pet Profile
 
-Create, edit, and delete pet profiles.
-Fields: name, species, breed, age, weight, photo.
+  Create, edit, and delete pet profiles. Fields: name, species, breed, age, weight, photo.
 
 3. Health Record
 
-Upload vaccination, deworming, and veterinary visit information.
-Attach documents or images (optional).
+  Upload vaccination, deworming, and veterinary visit information. Attach documents or images (optional).
 
 4. Nutritional Tracking
 
-Record meals or diets.
-Feeding schedule reminders.
+  Record meals or diets. Feeding schedule reminders.
 
 5. Automatic Reminders
 
-Email alerts or in-app notifications.
-Calendar of upcoming events.
+  Email alerts or in-app notifications. Calendar of upcoming events.
 
 6. Dashboard
 
-Overview with summary of health status, upcoming vaccines and active alerts.
+  Overview with summary of health status, upcoming vaccines and active alerts.
 
 ## 🧾🖋 User Registration and Authentication.
 
