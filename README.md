@@ -13,114 +13,16 @@ Click the image above to watch the project demostration.
 
 - **Frontend**: Angular / Angular~MAterial / SCSS / TypeScript / Google~Icons.
 
-## Project Structure ~ Feature Module Angular@20.
+## Project Structure ~ Feature Module Angular@20. Pending
 
-src/
- ├── app/
- │    ├── auth/
- │    │     ├── login/
- │    │     │     ├── login.page.ts
- │    │     │     ├── login.page.html
- │    │     │     └── login.page.css
- │    │     ├── register/
- │    │     │     ├── register.page.ts
- │    │     │     ├── register.page.html
- │    │     │     └── register.page.css
- │    │     ├── auth.service.ts
- │    │     └── auth.routes.ts
- │    │
- │    ├── pets/
- │    │     ├── pets-list/
- │    │     │     ├── pets-list.page.ts
- │    │     │     ├── pets-list.page.html
- │    │     │     └── pets-list.page.css
- │    │     ├── pet-detail/
- │    │     │     ├── pet-detail.page.ts
- │    │     │     ├── pet-detail.page.html
- │    │     │     └── pet-detail.page.css
- │    │     ├── pet-form/
- │    │     │     ├── pet-form.component.ts
- │    │     │     ├── pet-form.component.html
- │    │     │     └── pet-form.component.css
- │    │     ├── pets.service.ts
- │    │     └── pets.routes.ts
- │    │
- │    ├── health/
- │    │     ├── vaccines/
- │    │     │     ├── vaccines.page.ts
- │    │     │     ├── vaccines.page.html
- │    │     │     └── vaccines.page.css
- │    │     ├── deworming/
- │    │     │     ├── deworming.page.ts
- │    │     │     ├── deworming.page.html
- │    │     │     └── deworming.page.css
- │    │     ├── vet-visits/
- │    │     │     ├── vet-visits.page.ts
- │    │     │     ├── vet-visits.page.html
- │    │     │     └── vet-visits.page.css
- │    │     ├── health.service.ts
- │    │     └── health.routes.ts
- │    │
- │    ├── nutrition/
- │    │     ├── meal-log/
- │    │     │     ├── meal-log.page.ts
- │    │     │     ├── meal-log.page.html
- │    │     │     └── meal-log.page.css
- │    │     ├── reminders/
- │    │     │     ├── feeding-reminders.page.ts
- │    │     │     ├── feeding-reminders.page.html
- │    │     │     └── feeding-reminders.page.css
- │    │     ├── nutrition.service.ts
- │    │     └── nutrition.routes.ts
- │    │
- │    ├── reminders/
- │    │     ├── list/
- │    │     │     ├── reminders-list.page.ts
- │    │     │     ├── reminders-list.page.html
- │    │     │     └── reminders-list.page.css
- │    │     ├── calendar/
- │    │     │     ├── reminders-calendar.page.ts
- │    │     │     ├── reminders-calendar.page.html
- │    │     │     └── reminders-calendar.page.css
- │    │     ├── reminders.service.ts
- │    │     └── reminders.routes.ts
- │    │
- │    ├── dashboard/
- │    │     ├── dashboard.page.ts
- │    │     ├── dashboard.page.html
- │    │     └── dashboard.page.css
- │    │
- │    ├── shared/
- │    │     ├── components/
- │    │     │     ├── navbar/
- │    │     │     │     ├── navbar.component.ts
- │    │     │     │     ├── navbar.component.html
- │    │     │     │     └── navbar.component.css
- │    │     │     ├── footer/
- │    │     │     │     ├── footer.component.ts
- │    │     │     │     ├── footer.component.html
- │    │     │     │     └── footer.component.css
- │    │     │     └── card/
- │    │     │           ├── card.component.ts
- │    │     │           ├── card.component.html
- │    │     │           └── card.component.css
- │    │     ├── pipes/
- │    │     ├── directives/
- │    │     └── utils/
- │    │
- │    ├── app.routes.ts
- │    └── app.component.ts
- │
- ├── assets/
- │    ├── icons/
- │    ├── img/
- │    └── styles/
- │
- ├── environments/
- │    ├── environment.ts
- │    └── environment.prod.ts
- │
- └── main.ts
+📂 project/
+├── 📄 scrap.ipynb # Web scraping automation
+├── 📄 data.ipynb # Data analysis and visualization
+├── 📂 files/
+│ └── 📄 Funds.xlsx # Collected fund data
+├── 📂 assets/ # Screenshots and demo video
+├── 📄 requirements.txt # Python dependencies
+└── 📄 README.md # Project documentation
 
 ## ⚙️Functional Requirements
 
