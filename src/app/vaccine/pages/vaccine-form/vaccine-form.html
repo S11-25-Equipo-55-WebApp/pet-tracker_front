@@ -1,0 +1,119 @@
+<div class="vaccine-form-container">
+  <!-- Header -->
+  <header class="header">
+    <button class="back-button" (click)="goBack()" aria-label="Volver">
+      <mat-icon>arrow_back</mat-icon>
+    </button>
+    <h1 class="header-title">Registrar Vacuna</h1>
+  </header>
+
+  <!-- Main Content -->
+  <main class="main-content">
+    <form [formGroup]="vaccineForm" (ngSubmit)="onSubmit()" class="vaccine-form">
+      
+      <!-- Mascota Select -->
+      <div class="form-group">
+        <mat-form-field appearance="outline" class="full-width">
+          <mat-label>Mascota</mat-label>
+          <mat-select formControlName="mascotaId" placeholder="Seleccione la mascota">
+            @for (pet of pets(); track pet.mascotaId) {
+              <mat-option [value]="pet.mascotaId">{{ pet.nombre }}</mat-option>
+            }
+          </mat-select>
+          <mat-icon matPrefix>pets</mat-icon>
+          @if (mascotaIdInvalid) {
+            <mat-error>La mascota es requerida</mat-error>
+          }
+        </mat-form-field>
+      </div>
+
+      <!-- Tipo de Vacuna Select -->
+      <div class="form-group">
+        <mat-form-field appearance="outline" class="full-width">
+          <mat-label>Tipo de Vacuna</mat-label>
+          <mat-select formControlName="tipoVacunaId" placeholder="Seleccione el tipo de vacuna">
+            @for (type of typeVaccines(); track type.tipoVacunaId) {
+              <mat-option [value]="type.tipoVacunaId">{{ type.nombre }}</mat-option>
+            }
+          </mat-select>
+          <mat-icon matPrefix>vaccines</mat-icon>
+          @if (tipoVacunaIdInvalid) {
+            <mat-error>El tipo de vacuna es requerido</mat-error>
+          }
+        </mat-form-field>
+      </div>
+
+      <!-- Fecha de Aplicación -->
+      <div class="form-group">
+        <mat-form-field appearance="outline" class="full-width">
+          <mat-label>Fecha de Aplicación</mat-label>
+          <input matInput [matDatepicker]="pickerAplicacion" formControlName="fechaAplicacion" placeholder="Seleccione fecha">
+          <mat-datepicker-toggle matIconSuffix [for]="pickerAplicacion"></mat-datepicker-toggle>
+          <mat-datepicker #pickerAplicacion></mat-datepicker>
+          <mat-icon matPrefix>event</mat-icon>
+          @if (fechaAplicacionInvalid) {
+            <mat-error>La fecha de aplicación es requerida</mat-error>
+          }
+        </mat-form-field>
+      </div>
+
+      <!-- Fecha Próxima -->
+      <div class="form-group">
+        <mat-form-field appearance="outline" class="full-width">
+          <mat-label>Fecha Próxima</mat-label>
+          <input matInput [matDatepicker]="pickerProxima" formControlName="fechaProxima" placeholder="Seleccione fecha">
+          <mat-datepicker-toggle matIconSuffix [for]="pickerProxima"></mat-datepicker-toggle>
+          <mat-datepicker #pickerProxima></mat-datepicker>
+          <mat-icon matPrefix>event_upcoming</mat-icon>
+          @if (fechaProximaInvalid) {
+            <mat-error>La fecha próxima es requerida</mat-error>
+          }
+        </mat-form-field>
+      </div>
+
+      <!-- Notas -->
+      <div class="form-group">
+        <mat-form-field appearance="outline" class="full-width">
+          <mat-label>Notas</mat-label>
+          <textarea 
+            matInput 
+            formControlName="notas" 
+            placeholder="Agregar notas adicionales"
+            rows="4"
+            maxlength="500">
+          </textarea>
+          <mat-icon matPrefix>notes</mat-icon>
+          <mat-hint align="end">{{ vaccineForm.get('notas')?.value?.length || 0 }}/500</mat-hint>
+        </mat-form-field>
+      </div>
+
+      <!-- Buttons -->
+      <div class="form-actions">
+        <button 
+          mat-stroked-button 
+          type="button" 
+          (click)="resetForm()"
+          [disabled]="isSaving()">
+          <mat-icon>refresh</mat-icon>
+          Limpiar
+        </button>
+
+        <button 
+          mat-flat-button 
+          color="primary" 
+          type="submit"
+          [disabled]="isSaving() || vaccineForm.invalid">
+          @if (isSaving()) {
+            <mat-spinner diameter="20"></mat-spinner>
+          } @else {
+            <ng-container>
+              <mat-icon>save</mat-icon>
+              Guardar
+            </ng-container>
+          }
+        </button>
+      </div>
+
+    </form>
+  </main>
+</div>
