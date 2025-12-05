@@ -89,5 +89,5 @@ $ ng g environments
 Pending...
 
 ## Licencia
-Este proyecto está bajo la  [![MIT License](https://img.shields.io/badge/License-MIT-green.svg)](https://choosealicense.com/licenses/mit/).  Ver el archivo LICENSE para más detalles.
+This project is under the  [![MIT License](https://img.shields.io/badge/License-MIT-green.svg)](https://choosealicense.com/licenses/mit/).  See the LICENSE file for more details.
 
