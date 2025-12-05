@@ -15,14 +15,7 @@ Click the image above to watch the project demostration.
 
 ## Project Structure ~ Feature Module Angular@20. Pending
 
-📂 project/
-├── 📄 scrap.ipynb # Web scraping automation
-├── 📄 data.ipynb # Data analysis and visualization
-├── 📂 files/
-│ └── 📄 Funds.xlsx # Collected fund data
-├── 📂 assets/ # Screenshots and demo video
-├── 📄 requirements.txt # Python dependencies
-└── 📄 README.md # Project documentation
+PENDING....
 
 ## ⚙️Functional Requirements
 
@@ -93,9 +86,7 @@ $ ng g environments
 >-- ng serve ó npm start ó ng s
 
 ### This is a small demonstration of the app.
-<p align="center">
-    <img width="680" src="/images/demo.png">
-</p>
+Pending...
 
 ## Licencia
 Este proyecto está bajo la  [![MIT License](https://img.shields.io/badge/License-MIT-green.svg)](https://choosealicense.com/licenses/mit/).  Ver el archivo LICENSE para más detalles.
