@@ -94,7 +94,7 @@ $ ng g environments
 
 ### This is a small demonstration of the app.
 <p align="center">
-    <img width="680" src="/imges/demo.png">
+    <img width="680" src="/images/demo.png">
 </p>
 
 ## Licencia
