@@ -17,42 +17,75 @@ Click the image above to watch the project demostration.
 ```bash
 src/
 ├── ⚙️ app/
-│   ├── 🛡️ core/                  # Módulos, servicios y utilidades "singleton"
-│   │   ├── 🔑 guards/            # Guardas de ruta
-│   │   ├── 🔗 interceptors/      # Interceptores HTTP
-│   │   ├── 🛠️ services/          # Servicios "Core" a nivel de la aplicación
-│   │   └── core.module.ts       # Módulo para el Core
-│   │
-│   ├── 📦 shared/                # Módulos y componentes reutilizables
-│   │   ├── 🖼️ components/        # Componentes UI de uso común
-│   │   ├── ✨ directives/       # Directivas personalizadas
-│   │   ├── 💧 pipes/            # Pipes personalizadas
-│   │   └── shared.module.ts     # Módulo para el Shared
-│   │
-│   ├── 🚀 features/              # Módulos de funcionalidad (Lazy Loaded)
-│   │   ├── 🔒 auth/              # Funcionalidad de autenticación (Login, Registro)
-│   │   │   ├── 📄 pages/
-│   │   │   ├── 🧱 components/
-│   │   │   ├── 🛠️ services/
-│   │   │   ├── auth-routing.module.ts
-│   │   │   └── auth.module.ts
-│   │   │
-│   │   ├── 🧑‍🤝‍🧑 usuarios/          # Funcionalidad de gestión de usuarios
-│   │   │   ├── 📄 pages/
-│   │   │   ├── 🧱 components/
-│   │   │   ├── usuarios-routing.module.ts
-│   │   │   └── usuarios.module.ts
-│   │   │
-│   │   └── 📊 dashboard/         # Funcionalidad de la vista principal/resumen
-│   │       ├── 📄 pages/
-│   │       ├── 🧱 components/
-│   │       ├── dashboard-routing.module.ts
-│   │       └── dashboard.module.ts
-│   │
-│   ├── app-routing.module.ts    # Rutas de la aplicación principal
-│   └── app.component.* # Archivos principales del componente raíz
+│   │
+│   ├── 🔒 auth/                  # **Dominio: Autenticación**
+│   │   ├── login/                
+│   │   │     ├── login.page.ts
+│   │   │     └── ...
+│   │   ├── register/
+│   │   │     ├── register.page.ts
+│   │   │     └── ...
+│   │   ├── auth.service.ts
+│   │   ├── auth.routes.ts        # o auth-routing.module.ts
+│   │   └── auth.module.ts
+│   │
+│   ├── 🐶 pets/                   # **Dominio: Mascotas**
+│   │   ├── pets-list/
+│   │   ├── pet-detail/
+│   │   ├── pet-form/             # Si es un componente reutilizable dentro del dominio
+│   │   ├── pets.service.ts
+│   │   ├── pets.routes.ts
+│   │   └── pets.module.ts
+│   │
+│   ├── 🩺 health/                # **Dominio: Salud**
+│   │   ├── vaccines/
+│   │   ├── deworming/
+│   │   ├── vet-visits/
+│   │   ├── health.service.ts
+│   │   └── health.routes.ts
+│   │
+│   ├── 🍎 nutrition/            # **Dominio: Nutrición**
+│   │   ├── meal-log/
+│   │   ├── reminders/           # (Recordatorios de alimentación)
+│   │   ├── nutrition.service.ts
+│   │   └── nutrition.routes.ts
+│   │
+│   ├── 🔔 reminders/           # **Dominio: Recordatorios Generales**
+│   │   ├── list/
+│   │   ├── calendar/
+│   │   ├── reminders.service.ts
+│   │   └── reminders.routes.ts
+│   │
+│   ├── 📊 dashboard/            # **Dominio: Vista Principal**
+│   │   ├── dashboard.page.ts
+│   │   └── dashboard.routes.ts
+│   │
+│   ├── 📦 shared/                # Módulos y componentes reutilizables
+│   │   ├── 🖼️ components/        # (Navbar, Footer, Card, etc.)
+│   │   │   ├── navbar/
+│   │   │   │     ├── navbar.component.ts
+│   │   │   │     └── ...
+│   │   │   └── card/
+│   │   │         ├── card.component.ts
+│   │   │         └── ...
+│   │   ├── 💧 pipes/            
+│   │   ├── ✨ directives/       
+│   │   └── shared.module.ts
+│   │
+│   │
+│   ├── app.routes.ts            # Rutas de la aplicación principal
+│   └── app.component.*          # Componente raíz
 │
-└── 🖼️ assets/                    # Archivos estáticos (imágenes, fuentes, iconos)
+├── 🖼️ assets/
+│   ├── icons/
+│   ├── img/
+│   └── styles/
+│
+├── ⚙️ environments/
+│   ├── environment.ts
+│   └── environment.prod.ts
+│
+└── main.ts
 ```
 
 ## ⚙️Functional Requirements
