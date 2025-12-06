@@ -1,7 +1,7 @@
 // Variables
 $primary-color: #FF9966;
 $primary-dark: #FF7744;
-$secondary-color: #1A4D5C;
+$secondary-color: #0d6153;
 $background-light: #F5F5F5;
 $text-primary: #333333;
 $text-secondary: #666666;
@@ -97,7 +97,7 @@ $white: #FFFFFF;
 // Logo Section
 .logo-section {
   text-align: center;
-  margin: 40px;
+  margin: 25px;
 
   .logo-circle {
     width: 120px;
@@ -131,8 +131,7 @@ $white: #FFFFFF;
   }
 
   .app-text {
-    /* font-size: 16px; */
-    font-size: large;
+    font-size: 15px;
     color: $secondary-color;
     margin-bottom: -10px;
   }
@@ -226,7 +225,7 @@ $white: #FFFFFF;
 .submit-button {
   width: 100%;
   padding: 16px;
-  margin-top: 32px;
+  margin-top: 15px;
   font-size: 18px;
   font-weight: 600;
   color: $white;
@@ -287,6 +286,7 @@ $white: #FFFFFF;
     color: $primary-color;
     font-size: 16px;
     font-weight: 600;
+    margin-bottom: 10px;
     text-decoration: underline;
     transition: color 0.2s;
 

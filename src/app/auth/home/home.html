@@ -28,7 +28,7 @@
       <p class="app-text">
         Mantén la salud de tu mascota, siempre al día. <br>
         <span>
-          Regitra vacunas, citas y recordatorios. Despreocupate de lo realmente importante.
+          Registra vacunas, citas y recordatorios. Despreocupate de lo realmente importante.
         </span>
       </p>
     </div>
@@ -38,7 +38,7 @@
         [class.loading]="isLoading">
         <span *ngIf="!isLoading" class="button-content">
           <mat-icon matSuffix>stars</mat-icon>
-          Ingresar
+          Comenzar
         </span>
         <span *ngIf="isLoading" class="spinner"></span>
       </button>
@@ -48,7 +48,9 @@
         <button type="button" class="register-link" (click)="navigateToRegister()">
           Registrarse
         </button>
-        <p class="register-question">¿Olvidó su contraseña?</p>
+        <div>
+          <a routerLink="/auth/reset-password" class="register-question">¿Cambie su contraseña?</a>
+        </div>
       </div>
 
 

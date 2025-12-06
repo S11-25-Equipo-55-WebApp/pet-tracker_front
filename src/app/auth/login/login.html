@@ -87,7 +87,9 @@
         <button type="button" class="register-link" (click)="navigateToRegister()">
           Registrarse
         </button>
-        <p class="register-question">¿Olvidó su contraseña?</p>
+        <div>
+          <a routerLink="/auth/reset-password" class="register-question">¿Olvidó su contraseña?</a>
+        </div>
       </div>
     </form>
 
