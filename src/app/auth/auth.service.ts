@@ -40,7 +40,12 @@ export class AuthService {
     console.log(userName, password)
     return this.authHttp.post<AuthResponse>(`${baseUrl}/api/Usuario/login`, { userName, password })
     .pipe(
-      tap(({ user, token }) => this.handleAuthSuccess({ user, token })),
+      tap((resp) => {
+        console.log(resp); // TODO: De aquí saco el 'usuarioId', para pasarlo al Formulario de 'reset-password' & consumir el endpoint.
+        const { user, token } = resp;
+        this.handleAuthSuccess({ user, token })
+      }
+      ),
       map(() => true),
       catchError((err: any) => this.handleAuthError(err))
     );
