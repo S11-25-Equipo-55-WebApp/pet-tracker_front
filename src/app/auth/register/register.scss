@@ -97,21 +97,21 @@ $white: #FFFFFF;
 // Logo Section
 .logo-section {
   text-align: center;
-  margin: 40px;
+  margin: 10px;
 
   .logo-circle {
     width: 120px;
     height: 120px;
-    margin: 0 auto 50px;
+    margin: 0 auto 20px;
     background: linear-gradient(135deg, #B8977C 0%, #9D7B5F 100%);
     border-radius: 50%;
     @include flex-center;
     box-shadow: 0 8px 16px rgba(0, 0, 0, 0.15);
 
     .logo-img {
-        width: 70%;
+        width: 60px;
         /* controlas qué tan grande se ve */
-        height: 70%;
+        height: 60px;
         object-fit: contain;
       }
   }

@@ -337,14 +337,12 @@ $white: #FFFFFF;
   }
 
   .logo-section .logo-circle {
-    width: 115px;
+    width: 100px;
     height: 100px;
-    border-radius: 50%; // Esto hará que el contenedor sea un círculo
-    overflow: hidden; // Esto oculta cualquier contenido que se extienda fuera del círculo
 
     .logo-icon {
-      width: 100%;
-      height: 100%;
+      width: 100px;
+      height: 100px;
     }
   }
 

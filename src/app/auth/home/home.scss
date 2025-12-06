@@ -109,9 +109,9 @@ $white: #FFFFFF;
     box-shadow: 0 8px 16px rgba(0, 0, 0, 0.15);
 
     .logo-img {
-        width: 70%;
+        width: 100%;
         /* controlas qué tan grande se ve */
-        height: 70%;
+        height: 100%;
         object-fit: contain;
       }
   }
@@ -348,8 +348,8 @@ $white: #FFFFFF;
     height: 100px;
 
     .logo-icon {
-      width: 60px;
-      height: 60px;
+      width: 100px;
+      height: 100px;
     }
   }
 
