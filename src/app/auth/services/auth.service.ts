@@ -1,6 +1,6 @@
 import { computed, Injectable, signal } from '@angular/core';
-import { environment } from '../../environments/environment';
-import { AuthResponse, User } from '../shared/interfaces/auth-form.interface';
+import { environment } from '../../../environments/environment';
+import { AuthResponse, User } from '../interfaces/auth-form.interface';
 import { HttpClient } from '@angular/common/http';
 import { catchError, map, Observable, of, tap } from 'rxjs';
 

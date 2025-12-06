@@ -1,9 +1,9 @@
 import { Routes } from '@angular/router';
 import { AuthLayout } from './auth-layout/auth-layout';
 import { Home } from './home/home';
-import { Register } from './register/register';
-import { Login } from './login/login';
-import { ResetPassword } from './reset-password/reset-password';
+import { Register } from './pages/register/register';
+import { ResetPassword } from './pages/reset-password/reset-password';
+import { Login } from './pages/login/login';
 
 export const authRoutes: Routes = [
   {

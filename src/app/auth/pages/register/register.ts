@@ -1,16 +1,16 @@
 import { ChangeDetectionStrategy, Component, inject, OnInit, signal } from '@angular/core';
-import { CommonModule } from '@angular/common';
+import { CommonModule, NgIf } from '@angular/common';
 import { FormBuilder, FormGroup, ReactiveFormsModule, Validators } from '@angular/forms';
-import { Router, RouterLink } from '@angular/router';
+import { Router } from '@angular/router';
 import { MatButtonModule } from '@angular/material/button';
 import { MatToolbarModule } from '@angular/material/toolbar';
 import { MatIconModule } from '@angular/material/icon';
 import { MatFormFieldModule } from '@angular/material/form-field';
 import { MatInputModule } from '@angular/material/input';
-import { AuthService } from '../auth.service';
+import { AuthService } from '../../services/auth.service';
 
 @Component({
-  selector: 'app-login',
+  selector: 'app-register',
   imports: [
     CommonModule,
     ReactiveFormsModule,
@@ -20,14 +20,14 @@ import { AuthService } from '../auth.service';
     MatFormFieldModule,
     MatInputModule,
     MatIconModule,
-    RouterLink
-],
-  templateUrl: './login.html',
-  styleUrls: ['./login.scss'],
+    NgIf
+  ],
+  templateUrl: './register.html',
+  styleUrls: ['./register.scss'],
   changeDetection: ChangeDetectionStrategy.OnPush,
 })
-export class Login implements OnInit {
-  loginForm!: FormGroup;
+export class Register {
+  registerForm!: FormGroup;
   showPassword = false;
   isLoading = false;
 
@@ -52,9 +52,12 @@ export class Login implements OnInit {
   }
 
   private initForm(): void {
-    this.loginForm = this.fb.group({
+    this.registerForm = this.fb.group({
       userName: ['', [Validators.required, Validators.minLength(3)]],
-      password: ['', [Validators.required, Validators.minLength(6)]],
+      nombre: ['', [Validators.required, Validators.minLength(2)]],
+      apellido: ['', [Validators.required, Validators.min(2)]],
+      email: ['', [Validators.required, Validators.email]],
+      password: ['', [Validators.required, Validators.minLength(6)]]
     });
   }
 
@@ -65,9 +68,9 @@ export class Login implements OnInit {
   }
 
   onSubmit(): void {
-    if (this.loginForm.invalid) {
+    if (this.registerForm.invalid) {
       this.isLoading = true;
-      this.loginForm.markAllAsTouched();
+      this.registerForm.markAllAsTouched();
       this.hasError.set(true);
       setTimeout(() => {
         this.hasError.set(false);
@@ -75,12 +78,11 @@ export class Login implements OnInit {
       return;
     }
 
-    console.log('✅ Login Data:', this.loginForm.value);
-    const { userName = '', password = '' } = this.loginForm.value;
+    console.log('✅ Login Data:', this.registerForm.value);
+    const { userName = '', nombre = '', apellido = '', email = '', password = '', telefono = ''} = this.registerForm.value;
     this.isPosting.set(true);
 
-    this.authService.login(userName!, password!).subscribe((isAuthenticated) => {
-      console.log(isAuthenticated)
+    this.authService.register(userName!, nombre!, apellido!, email!, password!, telefono!).subscribe((isAuthenticated) => {
       if (isAuthenticated) {
         this.router.navigateByUrl('/');
         return;
@@ -110,7 +112,7 @@ export class Login implements OnInit {
   }
 
   get usernameError(): string {
-    const control = this.loginForm.get('username');
+    const control = this.registerForm.get('username');
     if (control?.hasError('required') && control.touched) {
       return 'El usuario es requerido';
     }
@@ -121,7 +123,7 @@ export class Login implements OnInit {
   }
 
   get passwordError(): string {
-    const control = this.loginForm.get('password');
+    const control = this.registerForm.get('password');
     if (control?.hasError('required') && control.touched) {
       return 'La contraseña es requerida';
     }
