@@ -17,43 +17,42 @@ Click the image above to watch the project demostration.
 
 src/
 ├── app/
-│   ├── core/                        # Módulo central del proyecto
-│   │   ├── guards/                  # Guards para protección de rutas
-│   │   ├── interceptors/            # Interceptores HTTP
-│   │   ├── services/                # Servicios globales
+│   ├── core/                           # Módulo central del proyecto
+│   │   ├── guards/                     # Guards para protección de rutas
+│   │   ├── interceptors/               # Interceptores HTTP
+│   │   ├── services/                   # Servicios globales
 │   │   └── core.module.ts
 │   │
-│   ├── shared/                      # Módulo compartido
-│   │   ├── components/              # Componentes reutilizables
-│   │   ├── directives/              # Directivas personalizadas
-│   │   ├── pipes/                   # Pipes reutilizables
+│   ├── shared/                         # Módulo compartido
+│   │   ├── components/                 # Componentes reutilizables
+│   │   ├── directives/                 # Directivas personalizadas
+│   │   ├── pipes/                      # Pipes reutilizables
 │   │   └── shared.module.ts
 │   │
-│   ├── features/                    # Módulos por funcionalidad
-│   │   ├── auth/                    # Autenticación
-│   │   │   ├── pages/               # Páginas (Login, Register, Forgot...)
-│   │   │   ├── components/          # Componentes internos
-│   │   │   ├── services/            # Servicios exclusivos del módulo
+│   ├── features/                       # Módulos por funcionalidad
+│   │   ├── auth/                       # Autenticación
+│   │   │   ├── pages/                  # Páginas (Login, Register, Forgot...)
+│   │   │   ├── components/             # Componentes internos
+│   │   │   ├── services/               # Servicios del módulo
 │   │   │   ├── auth-routing.module.ts
 │   │   │   └── auth.module.ts
 │   │   │
-│   │   ├── usuarios/                # Gestión de usuarios
+│   │   ├── usuarios/                   # Gestión de usuarios
 │   │   │   ├── pages/
 │   │   │   ├── components/
 │   │   │   ├── usuarios-routing.module.ts
 │   │   │   └── usuarios.module.ts
 │   │   │
-│   │   └── dashboard/               # Dashboard principal
+│   │   └── dashboard/                  # Dashboard principal
 │   │       ├── pages/
 │   │       ├── components/
 │   │       ├── dashboard-routing.module.ts
 │   │       └── dashboard.module.ts
 │   │
-│   ├── app-routing.module.ts        # Rutas principales
-│   └── app.component.*              # Componente raíz
+│   ├── app-routing.module.ts           # Rutas principales
+│   └── app.component.*                 # Componente raíz
 │
-└── assets/                          # Recursos estáticos (imágenes, icons, etc.)
-
+└── assets/                             # Recursos estáticos (imágenes, icons, etc.)
 
 ## ⚙️Functional Requirements
 
