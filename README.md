@@ -13,46 +13,46 @@ Click the image above to watch the project demostration.
 
 - **Frontend**: Angular ~ Angular Material ~ SCSS ~ TypeScript ~ Google ~ Icons.
 
-## Project Structure ~ Feature Module Angular@20. Pending
+## Project Structure ~ Feature Module Angular@20.
 ```bash
 src/
-├── app/
-│   ├── core/                           # Módulo central del proyecto
-│   │   ├── guards/                     # Guards para protección de rutas
-│   │   ├── interceptors/               # Interceptores HTTP
-│   │   ├── services/                   # Servicios globales
-│   │   └── core.module.ts
+├── ⚙️ app/
+│   ├── 🛡️ core/                  # Módulos, servicios y utilidades "singleton"
+│   │   ├── 🔑 guards/            # Guardas de ruta
+│   │   ├── 🔗 interceptors/      # Interceptores HTTP
+│   │   ├── 🛠️ services/          # Servicios "Core" a nivel de la aplicación
+│   │   └── core.module.ts       # Módulo para el Core
 │   │
-│   ├── shared/                         # Módulo compartido
-│   │   ├── components/                 # Componentes reutilizables
-│   │   ├── directives/                 # Directivas personalizadas
-│   │   ├── pipes/                      # Pipes reutilizables
-│   │   └── shared.module.ts
+│   ├── 📦 shared/                # Módulos y componentes reutilizables
+│   │   ├── 🖼️ components/        # Componentes UI de uso común
+│   │   ├── ✨ directives/       # Directivas personalizadas
+│   │   ├── 💧 pipes/            # Pipes personalizadas
+│   │   └── shared.module.ts     # Módulo para el Shared
 │   │
-│   ├── features/                       # Módulos por funcionalidad
-│   │   ├── auth/                       # Autenticación
-│   │   │   ├── pages/                  # Páginas (Login, Register, Forgot...)
-│   │   │   ├── components/             # Componentes internos
-│   │   │   ├── services/               # Servicios del módulo
+│   ├── 🚀 features/              # Módulos de funcionalidad (Lazy Loaded)
+│   │   ├── 🔒 auth/              # Funcionalidad de autenticación (Login, Registro)
+│   │   │   ├── 📄 pages/
+│   │   │   ├── 🧱 components/
+│   │   │   ├── 🛠️ services/
 │   │   │   ├── auth-routing.module.ts
 │   │   │   └── auth.module.ts
 │   │   │
-│   │   ├── usuarios/                   # Gestión de usuarios
-│   │   │   ├── pages/
-│   │   │   ├── components/
+│   │   ├── 🧑‍🤝‍🧑 usuarios/          # Funcionalidad de gestión de usuarios
+│   │   │   ├── 📄 pages/
+│   │   │   ├── 🧱 components/
 │   │   │   ├── usuarios-routing.module.ts
 │   │   │   └── usuarios.module.ts
 │   │   │
-│   │   └── dashboard/                  # Dashboard principal
-│   │       ├── pages/
-│   │       ├── components/
+│   │   └── 📊 dashboard/         # Funcionalidad de la vista principal/resumen
+│   │       ├── 📄 pages/
+│   │       ├── 🧱 components/
 │   │       ├── dashboard-routing.module.ts
 │   │       └── dashboard.module.ts
 │   │
-│   ├── app-routing.module.ts           # Rutas principales
-│   └── app.component.*                 # Componente raíz
+│   ├── app-routing.module.ts    # Rutas de la aplicación principal
+│   └── app.component.* # Archivos principales del componente raíz
 │
-└── assets/                             # Recursos estáticos (imágenes, icons, etc.)
+└── 🖼️ assets/                    # Archivos estáticos (imágenes, fuentes, iconos)
 ```
 
 ## ⚙️Functional Requirements
