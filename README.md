@@ -14,7 +14,7 @@ Click the image above to watch the project demostration.
 - **Frontend**: Angular ~ Angular Material ~ SCSS ~ TypeScript ~ Google ~ Icons.
 
 ## Project Structure ~ Feature Module Angular@20. Pending
-
+```bash
 src/
 ├── app/
 │   ├── core/                           # Módulo central del proyecto
@@ -53,6 +53,7 @@ src/
 │   └── app.component.*                 # Componente raíz
 │
 └── assets/                             # Recursos estáticos (imágenes, icons, etc.)
+```
 
 ## ⚙️Functional Requirements
 
