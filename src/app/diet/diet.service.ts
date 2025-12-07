@@ -27,15 +27,13 @@ export class DietService {
     }
 
     createDiet(data: IDiet): Observable<IDiet> {
-        const requestBody: IDietRequest = { dtoDieta: data };
-        return this.http.post<IDiet>(this.apiUrl, requestBody)
+        return this.http.post<IDiet>(this.apiUrl, data)
             .pipe(
                 catchError(this.manejarError));
     }
 
     updateDiet(id: number, data: IDiet): Observable<IDiet> {
-        const requestBody: IDietRequest = { dtoDieta: data };
-        return this.http.put<IDiet>(`${this.apiUrl}/${id}`, requestBody)
+        return this.http.put<IDiet>(`${this.apiUrl}/${id}`, data)
             .pipe(
                 catchError(this.manejarError)
             );
