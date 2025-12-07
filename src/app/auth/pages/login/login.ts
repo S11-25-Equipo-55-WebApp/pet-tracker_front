@@ -93,7 +93,6 @@ export class Login implements OnInit {
     })
   }
 
-
   navigateToRegister(): void {
     this.router.navigate(['/register']);
   }

@@ -1,20 +1,37 @@
-import { ChangeDetectionStrategy, Component, OnInit } from '@angular/core';
+import { ChangeDetectionStrategy, Component, inject, OnInit, signal } from '@angular/core';
 import { CommonModule } from '@angular/common';
 import { FormBuilder, FormGroup, ReactiveFormsModule, Validators } from '@angular/forms';
 import { Router } from '@angular/router';
+import { MatToolbarModule } from '@angular/material/toolbar';
+import { MatButtonModule } from '@angular/material/button';
+import { MatIconModule } from '@angular/material/icon';
+import { MatFormFieldModule } from '@angular/material/form-field';
+import { MatInputModule } from '@angular/material/input';
+import { AuthService } from '../../services/auth.service';
 
 @Component({
   selector: 'app-reset-password',
-  imports: [CommonModule, ReactiveFormsModule],
+  imports: [
+    CommonModule,
+    ReactiveFormsModule,
+    MatToolbarModule,
+    MatButtonModule,
+    MatIconModule,
+    MatFormFieldModule,
+    MatInputModule,
+    MatIconModule,
+  ],
   templateUrl: './reset-password.html',
   styleUrls: ['./reset-password.scss'],
   changeDetection: ChangeDetectionStrategy.OnPush,
 })
 export class ResetPassword implements OnInit {
-  loginForm!: FormGroup;
+  resetForm!: FormGroup;
   showPassword = false;
   showConfirmPassword = false;
   isLoading = false;
+  hasError = signal(false);
+  authService = inject(AuthService);
 
   constructor(
     private fb: FormBuilder,
@@ -26,10 +43,9 @@ export class ResetPassword implements OnInit {
   }
 
   private initForm(): void {
-    this.loginForm = this.fb.group({
-      username: ['', [Validators.required, Validators.minLength(3)]],
-      password: ['', [Validators.required, Validators.minLength(6)]],
-      confirmPassword: ['', [Validators.required]]
+    this.resetForm = this.fb.group({
+      passwodActual: ['', [Validators.required, Validators.minLength(8)]],
+      passwordNuevo: ['', [Validators.required, Validators.minLength(8)]],
     });
   }
 
@@ -42,19 +58,22 @@ export class ResetPassword implements OnInit {
   }
 
   onSubmit(): void {
-    if (this.loginForm.valid) {
+    if (this.resetForm.valid) {
       this.isLoading = true;
-      const { userName, password, confirmPassword } = this.loginForm.value;
+      const { passwodActual, passwordNuevo } = this.resetForm.value;
 
-      // Validación de contraseñas coincidentes
-      if (password !== confirmPassword) {
-        alert('Las contraseñas no coinciden');
-        this.isLoading = false;
+      this.authService.reset(passwodActual!, passwordNuevo!).subscribe((isAuthenticated) => {
+      console.log(isAuthenticated)
+      if (isAuthenticated) {
+        this.router.navigateByUrl('/');
         return;
       }
 
-      // Aquí iría la lógica de autenticación
-      console.log('Login attempt:', { userName, password });
+      this.hasError.set(true);
+      setTimeout(() => {
+        this.hasError.set(false);
+      }, 2000);
+    })
 
       // Simulación de login
       setTimeout(() => {
@@ -62,7 +81,7 @@ export class ResetPassword implements OnInit {
         this.router.navigate(['/dashboard']);
       }, 1500);
     } else {
-      this.markFormGroupTouched(this.loginForm);
+      this.markFormGroupTouched(this.resetForm);
     }
   }
 
@@ -82,7 +101,7 @@ export class ResetPassword implements OnInit {
   }
 
   get usernameError(): string {
-    const control = this.loginForm.get('username');
+    const control = this.resetForm.get('username');
     if (control?.hasError('required') && control.touched) {
       return 'El usuario es requerido';
     }
@@ -93,7 +112,7 @@ export class ResetPassword implements OnInit {
   }
 
   get passwordError(): string {
-    const control = this.loginForm.get('password');
+    const control = this.resetForm.get('password');
     if (control?.hasError('required') && control.touched) {
       return 'La contraseña es requerida';
     }
