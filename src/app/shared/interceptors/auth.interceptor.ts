@@ -6,12 +6,19 @@ import { AuthService } from "../../auth/auth.service";
 export function authInterceptor(
   req: HttpRequest<unknown>, next: HttpHandlerFn): Observable<HttpEvent<unknown>> {
   const token = inject(AuthService).token();
-  //const token = localStorage.getItem('');
-  const newReq = req.clone({
-    headers: req.headers.append('Authorization', `Bearer ${token}`),
-  });
-
+  
   console.log('🔥 Interceptor ejecutado:', req.url);
+  console.log('Token:', token);
 
-  return next(newReq);
+  // Solo agregar el header si tenemos un token
+  if (token) {
+    const newReq = req.clone({
+      headers: req.headers.set('Authorization', `Bearer ${token}`),
+    });
+    console.log('✅ Token añadido al header');
+    return next(newReq);
+  }
+
+  console.log('⚠️ No hay token disponible');
+  return next(req);
 }

@@ -7,3 +7,7 @@
     tipoAlimentoId: number,
     unidadMedidaId: number
 }
+
+export interface IDietRequest {
+    dtoDieta: IDiet
+}

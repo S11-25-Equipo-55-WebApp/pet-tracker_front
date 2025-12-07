@@ -2,7 +2,7 @@ import { Injectable } from '@angular/core';
 import { HttpClient, HttpErrorResponse, HttpHeaders, HttpParams } from '@angular/common/http';
 import { Observable, throwError } from 'rxjs';
 import { catchError } from 'rxjs/operators';
-import { IDiet } from './interface/diet.interface';
+import { IDiet, IDietRequest } from './interface/diet.interface';
 
 
 @Injectable({
@@ -27,13 +27,15 @@ export class DietService {
     }
 
     createDiet(data: IDiet): Observable<IDiet> {
-        return this.http.post<IDiet>(this.apiUrl, data)
+        const requestBody: IDietRequest = { dtoDieta: data };
+        return this.http.post<IDiet>(this.apiUrl, requestBody)
             .pipe(
                 catchError(this.manejarError));
     }
 
     updateDiet(id: number, data: IDiet): Observable<IDiet> {
-        return this.http.put<IDiet>(`${this.apiUrl}/${id}`, data)
+        const requestBody: IDietRequest = { dtoDieta: data };
+        return this.http.put<IDiet>(`${this.apiUrl}/${id}`, requestBody)
             .pipe(
                 catchError(this.manejarError)
             );
