@@ -1,0 +1,37 @@
+<div class="screen">
+
+  <!-- Header -->
+  <div class="header">
+    <button class="icon-btn" routerLink="/dashboard">
+      <mat-icon>arrow_back</mat-icon>
+    </button>
+
+    <div class="user-name">{{nombre}} y {{apellido}} User</div>
+
+    <button class="icon-btn">
+      <mat-icon>menu</mat-icon>
+    </button>
+  </div>
+
+  <!-- Title -->
+  <div class="title-section">
+    <img src="assets/icons/pets-title-icon.png" class="title-icon" alt="">
+    <h2 class="title">Mis mascotas</h2>
+    <span class="subtitle">Listado de mascotas</span>
+  </div>
+
+  <!-- Listado -->
+  <div class="list">
+    <app-pet-card
+      *ngFor="let pet of pets"
+      [pet]="pet">
+    </app-pet-card>
+  </div>
+
+  <!-- Button -->
+  <button class="register-btn" routerLink="/pets/register">
+    <mat-icon>add</mat-icon>
+    Registrar
+  </button>
+
+</div>
