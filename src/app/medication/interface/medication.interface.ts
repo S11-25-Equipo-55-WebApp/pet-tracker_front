@@ -5,5 +5,6 @@ export interface IMedication {
     frecuencia: number,
     descripcion: string,
     consultaId: number,
-    tipoMedicacionId: number
+    tipoMedicacionId: number,
+    tipoMedicacionNombre? : string
 }

@@ -25,6 +25,7 @@
     <app-pet-card
       *ngFor="let pet of pets"
       [pet]="pet">
+      (click)="verDetalle($event)">
     </app-pet-card>
   </div>
 
