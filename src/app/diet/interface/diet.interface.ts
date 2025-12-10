@@ -5,6 +5,11 @@
     notas: string,
     mascotaId: number,
     tipoAlimentoId: number,
-    unidadMedidaId: number,
+    unidadMedidaId: number
     tipoAlimentoNombre?: string
+}
+
+export interface IDietRequest {
+    dtoDieta: IDiet
+    unidadMedidaId: number,
 }

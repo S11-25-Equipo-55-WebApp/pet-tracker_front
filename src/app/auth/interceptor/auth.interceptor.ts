@@ -12,6 +12,17 @@ export function authInterceptor(
   });
 
   console.log('🔥 Interceptor ejecutado:', req.url);
+  console.log('Token:', token);
 
-  return next(newReq);
+  // Solo agregar el header si tenemos un token
+  if (token) {
+    const newReq = req.clone({
+      headers: req.headers.set('Authorization', `Bearer ${token}`),
+    });
+    console.log('✅ Token añadido al header');
+    return next(newReq);
+  }
+
+  console.log('⚠️ No hay token disponible');
+  return next(req);
 }
