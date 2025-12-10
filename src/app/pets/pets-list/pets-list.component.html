@@ -1,0 +1,51 @@
+<div class="screen">
+
+  <!-- Header -->
+  <div class="header">
+    <button class="icon-btn" routerLink="/dashboard">
+      <mat-icon>arrow_back</mat-icon>
+    </button>
+
+    <div class="user-name">{{nombre}} y {{apellido}} User</div>
+
+    <button class="icon-btn">
+      <mat-icon>menu</mat-icon>
+    </button>
+  </div>
+
+  <!-- Title -->
+  <div class="title-section">
+    <img src="/images/logo.png" class="title-icon" alt="">
+    <h2 class="title">Mis mascotas</h2>
+    <span class="subtitle">Listado de mascotas</span>
+  </div>
+
+  <!-- Listado -->
+  <div class="list">
+    <app-pet-card
+      *ngFor="let pet of pets"
+      [pet]="pet">
+    </app-pet-card>
+  </div>
+
+  <!-- Button -->
+  <button class="register-btn" routerLink="/pets/register">
+    <mat-icon>add</mat-icon>
+    Registrar
+  </button>
+ <!-- Bottom Navigation -->
+  <nav class="bottom-nav">
+    <button class="nav-item" aria-label="Inicio">
+      <mat-icon matSuffix>home</mat-icon>
+    </button>
+    <button class="nav-item" aria-label="Usuarios">
+      <mat-icon matSuffix>pets</mat-icon>
+    </button>
+    <button class="nav-item" aria-label="Perfil">
+      <mat-icon matSuffix>3p</mat-icon>
+    </button>
+    <button class="nav-item" aria-label="Galería">
+      <mat-icon matSuffix>person</mat-icon>
+    </button>
+  </nav>
+</div>
