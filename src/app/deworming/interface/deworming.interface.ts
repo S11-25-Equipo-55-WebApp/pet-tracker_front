@@ -5,5 +5,11 @@ export interface IDeworming {
     fechaProxima: string,
     notas: string,
     mascotaId: number,
-    tipoDesparacitacionId: number
+    tipoDesparacitacionId: number,
+    tipoDesparacitacionNombre?: any,
+}
+
+export interface IDateDeworming {
+    fecha: string,
+    nombre : string
 }
