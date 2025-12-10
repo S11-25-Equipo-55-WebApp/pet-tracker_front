@@ -75,7 +75,7 @@ export class Login implements OnInit {
       return;
     }
 
-    console.log('✅ Login Data:', this.loginForm.value);
+   /*  console.log('✅ Login Data:', this.loginForm.value); */
     const { userName = '', password = '' } = this.loginForm.value;
     this.isPosting.set(true);
 

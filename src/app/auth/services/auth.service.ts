@@ -2,7 +2,7 @@ import { computed, Injectable, signal } from '@angular/core';
 import { environment } from '../../../environments/environment';
 import { AuthResponse, User } from '../interfaces/auth-form.interface';
 import { HttpClient } from '@angular/common/http';
-import { BehaviorSubject, catchError, map, Observable, of, tap } from 'rxjs';
+import { catchError, map, Observable, of, tap } from 'rxjs';
 
 
 type AuthStatus = 'checking' | 'authenticated' | 'not-authenticated';
@@ -16,17 +16,9 @@ export class AuthService {
   private _user = signal<User | null>(null);
   private _token = signal<string | null>(sessionStorage.getItem('token'));
 
-  private _usuarioId = new BehaviorSubject<number | null>(null);
-  public readonly usuarioId$ = this._usuarioId.asObservable();
-  private currentUsuarioId: number | null = this.getInitialUsuarioId();
-
   constructor(private readonly authHttp: HttpClient) {}
 
   authStatus = computed<AuthStatus>(() => {
-    if (this.currentUsuarioId !== null) {
-      this._usuarioId.next(this.currentUsuarioId);
-    }
-
     if (this._authStatus() === 'checking') return 'checking';
     return this._user() ? 'authenticated' : 'not-authenticated';
   });
@@ -35,10 +27,10 @@ export class AuthService {
   token = computed<string | null>(() => this._token());
 
 
-  register(userName: string, nombre: string, apellido: string, email: string, password: string, telefono: string): Observable<boolean> {
-    return this.authHttp.post<AuthResponse>(`${baseUrl}/api/Usuario`, { userName, nombre, apellido, email, password, telefono })
+  register(userName: string, nombre: string, apellido: string, email: string, password: string, telefono?: string): Observable<boolean> {
+    return this.authHttp.post<AuthResponse>(`${baseUrl}/api/Usuario`, { userName, nombre, apellido, email, password })
     .pipe(
-      tap(({ user, token }) => this.handleAuthSuccess(user, token )),
+      tap(({ usuario, token }) => this.handleAuthSuccess(usuario, token )),
       map(() => true),
       catchError((err: any) => this.handleAuthError(err))
     );
@@ -48,11 +40,12 @@ export class AuthService {
     return this.authHttp.post<AuthResponse>(`${baseUrl}/api/Usuario/login`, { userName, password })
     .pipe(
       tap((resp) => {
-        console.log(resp); // TODO: De aquí saco el 'usuarioId', para pasarlo al Formulario de 'reset-password' & consumir el endpoint.
-        const { user, token } = resp;
-        this.handleAuthSuccess(user, token )
-      }
-      ),
+        const { usuario , token } = resp;
+        this._user.set(usuario);
+        this.handleAuthSuccess(usuario, token);
+        this.getUsuarioId();
+        return { usuario, token };
+      }),
       map(() => true),
       catchError((err: any) => this.handleAuthError(err))
     );
@@ -66,22 +59,10 @@ export class AuthService {
     }
     return this.authHttp.post<AuthResponse>(`${baseUrl}/api/Usuario/${id}/CambiarPassword`, { passwordActual, passwordNuevo })
     .pipe(
-      tap(({ user, token }) => this.handleAuthSuccess(user, token )),
+      tap(({ usuario, token }) => this.handleAuthSuccess(usuario, token )),
       map(() => true),
       catchError((err: any) => this.handleAuthError(err))
     );
-  }
-
-  private getInitialUsuarioId(): number | null {
-  const idString = sessionStorage.getItem('usuario_id');
-  if (idString) {
-    return parseInt(idString, 10);
-  }
-  return null;
-}
-
-  getUsuarioId(): number | null {
-    return this.currentUsuarioId;
   }
 
   logout(): void {
@@ -92,13 +73,7 @@ export class AuthService {
   }
 
   private handleAuthSuccess(user: any, token: string): void {
-    const id = user.usuarioId;
-    this.currentUsuarioId = id;
-    this._usuarioId.next(id);
-
     sessionStorage.setItem('token', token);
-    sessionStorage.setItem('usuarioId', id.toString())
-
     this._user.set(user);
     this._token.set(token);
     this._authStatus.set('authenticated');
@@ -107,6 +82,11 @@ export class AuthService {
   private handleAuthError(err: any): Observable<boolean>{
     this.logout();
     return of(false);
+  }
+
+  getUsuarioId(): number | null {
+    const UserId = this.user()?.usuarioId!;
+    return UserId;
   }
 
 }
