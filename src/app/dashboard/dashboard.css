@@ -1,0 +1,29 @@
+
+
+.table-wrapper {
+  width: 100%;
+  overflow-x: auto;        /* Previene desbordamiento */
+  display: block;
+}
+
+.dashboard-container {
+  padding: 16px;
+  display: flex;
+  flex-direction: column;
+  gap: 16px;
+  max-width: 100%;
+  box-sizing: border-box;
+}
+
+mat-card {
+  width: 100%;
+  max-width: 100%;
+  overflow-x: auto;
+}
+
+ag-charts {
+  display: block;
+  width: 100%;
+  height: 400px;
+  max-width: 100%;
+}

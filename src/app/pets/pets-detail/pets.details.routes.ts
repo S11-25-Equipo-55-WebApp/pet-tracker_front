@@ -12,6 +12,12 @@ export const PETS_ROUTES2: Routes = [
           import('../../ficha-mascota/fichaMascota.component')
             .then(c => c.FichaMascota)
       },
+      {
+        path: 'dashboard',
+        loadComponent: () =>
+          import('../../dashboard/dashboard')
+            .then(c => c.DashboardComponent)
+      },
       { path: '', redirectTo: 'ficha', pathMatch: 'full' }
     ]
   }
