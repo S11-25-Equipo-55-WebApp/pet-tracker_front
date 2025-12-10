@@ -12,7 +12,7 @@ export const routes: Routes = [
       import('./pets/pets-list/pets-list.routes').then(m => m.PETS_ROUTES)
   },
   {
-    path: 'pet-details/:id',
+    path: '',
     loadChildren: () =>
       import('./pets/pets-detail/pets.details.routes').then(m => m.PETS_ROUTES2)
   },
