@@ -78,7 +78,7 @@ export class Register {
       return;
     }
 
-    console.log('✅ Login Data:', this.registerForm.value);
+    /* console.log('✅ Login Data:', this.registerForm.value); */
     const { userName = '', nombre = '', apellido = '', email = '', password = '', telefono = ''} = this.registerForm.value;
     this.isPosting.set(true);
 
