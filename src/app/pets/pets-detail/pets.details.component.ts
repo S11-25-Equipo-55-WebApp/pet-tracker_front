@@ -11,13 +11,7 @@ import { TypeVaccineService } from '../../typeVaccine/typeVaccine.service';
 import { DewormingService } from '../../deworming/deworming.service';
 import { TypeDewormingService } from '../../typeDeworming/typeDeworming.service';
 import { IDateDeworming, IDeworming } from '../../deworming/interface/deworming.interface';
-import { DietService } from '../../diet/diet.service';
-import { IDiet } from '../../diet/interface/diet.interface';
-import { TypeFoodService } from '../../typeFood/typeFood.service';
-import { MedicationService } from '../../medication/medication.service';
-import { TypeMedicationService } from '../../typeMedication/typeMedication.service';
-import { IMedication } from '../../medication/interface/medication.interface';
-import { MatDialog, MatDialogModule } from '@angular/material/dialog';
+import { MatDialog } from '@angular/material/dialog';
 import { CalendarDialogComponent } from '../../calendar/calendar.component';
 import { FichaMascota } from "../../ficha-mascota/fichaMascota.component";
 

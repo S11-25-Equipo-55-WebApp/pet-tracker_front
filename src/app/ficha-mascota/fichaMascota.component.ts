@@ -3,7 +3,6 @@ import { ActivatedRoute, Router } from '@angular/router';
 import { PetService } from '../pets/pets.service';
 import { SpecieService } from '../species/species.service';
 import { RaceService } from '../race/race.service';
-import { MatIcon } from "@angular/material/icon";
 import { IDateVaccine, IVaccine } from '../vaccine/interface/vaccine.interface';
 import { VaccineService } from '../vaccine/vaccine.service';
 import { CommonModule } from '@angular/common';
