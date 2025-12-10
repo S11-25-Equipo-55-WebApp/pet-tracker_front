@@ -1,13 +1,13 @@
 import { ChangeDetectionStrategy, Component, inject, OnInit, signal } from '@angular/core';
 import { CommonModule } from '@angular/common';
 import { FormBuilder, FormGroup, ReactiveFormsModule, Validators } from '@angular/forms';
-import { Router } from '@angular/router';
+import { Router, RouterLink } from '@angular/router';
 import { MatButtonModule } from '@angular/material/button';
 import { MatToolbarModule } from '@angular/material/toolbar';
 import { MatIconModule } from '@angular/material/icon';
 import { MatFormFieldModule } from '@angular/material/form-field';
 import { MatInputModule } from '@angular/material/input';
-import { AuthService } from '../auth.service';
+import { AuthService } from '../../services/auth.service';
 
 @Component({
   selector: 'app-login',
@@ -19,8 +19,9 @@ import { AuthService } from '../auth.service';
     MatIconModule,
     MatFormFieldModule,
     MatInputModule,
-    MatIconModule
-  ],
+    MatIconModule,
+    RouterLink
+],
   templateUrl: './login.html',
   styleUrls: ['./login.scss'],
   changeDetection: ChangeDetectionStrategy.OnPush,
@@ -79,8 +80,9 @@ export class Login implements OnInit {
     this.isPosting.set(true);
 
     this.authService.login(userName!, password!).subscribe((isAuthenticated) => {
+      console.log(isAuthenticated)
       if (isAuthenticated) {
-        this.router.navigateByUrl('/');
+        this.router.navigateByUrl('/pets');
         return;
       }
 
@@ -90,7 +92,6 @@ export class Login implements OnInit {
       }, 2000);
     })
   }
-
 
   navigateToRegister(): void {
     this.router.navigate(['/register']);

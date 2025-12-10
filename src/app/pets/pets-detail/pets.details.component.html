@@ -1,0 +1,156 @@
+<div class="screen">
+
+  <div class="cabecera">
+
+
+    <div class="header">
+      <button class="icon-btn" (click)="volver()">
+        <mat-icon>arrow_back</mat-icon>
+      </button>
+
+      <div class="user-name">{{nombre}} {{apellido}}</div>
+
+      <button class="icon-btn">
+        <mat-icon>menu</mat-icon>
+      </button>
+    </div>
+
+    <!-- Componente: Perfil de usuario (MD3) -->
+    <div class="md3-card user-profile" role="group" aria-label="Perfil de usuario Orion">
+      <div class="user-leading">
+        <img class="avatar" src={{pet.fotoMascota}} alt="Foto de perfil: pug" width="48" height="48" />
+        <div class="user-info">
+          <span class="user-name">{{capitalizado}}</span>
+        </div>
+      </div>
+
+      <div class="user-actions">
+        <!-- Botón calendario -->
+        <button class="md3-icon-button" type="button" aria-label="Abrir calendario" (click)="abrirCalendario()">
+          <svg class="icon" viewBox="0 0 24 24" aria-hidden="true">
+            <path
+              d="M19 4h-1V2h-2v2H8V2H6v2H5c-1.1 0-2 .9-2 2v13a2 2 0 0 0 2 2h14a2 2 0 0 0 2-2V6c0-1.1-.9-2-2-2Zm0 17H5V9h14v12ZM7 11h5v5H7v-5Z" />
+          </svg>
+        </button>
+        <!-- Botón menú (kebab vertical) -->
+        <button class="md3-icon-button" type="button" aria-label="Más opciones">
+          <svg class="icon" viewBox="0 0 24 24" aria-hidden="true">
+            <path
+              d="M12 8a2 2 0 1 0 0-4 2 2 0 0 0 0 4Zm0 6a2 2 0 1 0 .001-4.001A2 2 0 0 0 12 14Zm0 6a2 2 0 1 0 .001-4.001A2 2 0 0 0 12 20Z" />
+          </svg>
+        </button>
+      </div>
+    </div>
+
+    <!-- COMIENZO CARRUSEL -->
+
+    <div class="icon-carousel-container">
+      <div class="icon-carousel">
+        <button class="m3-icon-chip active">
+          <span class="material-symbols-outlined">
+            scale
+          </span>
+          <span class="chip-label">C.Peso</span>
+        </button>
+
+        <button class="m3-icon-chip">
+          <span class="material-symbols-outlined">
+            calendar_month
+          </span>
+          <span class="chip-label">Calend.</span>
+        </button>
+
+        <button class="m3-icon-chip">
+          <span class="material-symbols-outlined">
+            schedule
+          </span>
+          <span class="chip-label">Record.</span>
+        </button>
+
+        <button class="m3-icon-chip">
+          <span class="material-symbols-outlined">
+            medication
+          </span>
+          <span class="chip-label">Medic.</span>
+        </button>
+
+        <button class="m3-icon-chip">
+          <span class="material-symbols-outlined">
+            healing
+          </span>
+          <span class="chip-label">Tratam.</span>
+        </button>
+
+        <button class="m3-icon-chip">
+          <span class="material-symbols-outlined">
+            description
+          </span>
+          <span class="chip-label">Exam.</span>
+        </button>
+
+        <button class="m3-icon-chip">
+          <span class="material-symbols-outlined">
+            add_notes
+          </span>
+          <span class="chip-label">Cons.</span>
+        </button>
+
+        <button class="m3-icon-chip">
+          <span class="material-symbols-outlined">
+            restaurant
+          </span>
+          <span class="chip-label">Dietas</span>
+        </button>
+
+        <button class="m3-icon-chip">
+          <span class="material-symbols-outlined">
+            vaccines
+          </span>
+          <span class="chip-label">Vacunas</span>
+        </button>
+
+        <button class="m3-icon-chip">
+          <span class="material-symbols-outlined">
+            pest_control
+          </span>
+          <span class="chip-label">Desp.</span>
+        </button>
+      </div>
+    </div>
+  </div>
+
+
+  <!-- FIN CARRUSEL -->
+<div class="contendor-hijo">  
+  <!-- <app-ficha-mascota></app-ficha-mascota> -->
+   <router-outlet></router-outlet>
+</div>
+
+
+
+
+
+
+  <!-- COMIENZO FOOTER -->
+
+  <!-- Bottom Navigation -->
+  <nav class="bottom-nav">
+    <button class="nav-item" aria-label="Inicio">
+      <mat-icon matSuffix>home</mat-icon>
+    </button>
+    <button class="nav-item" aria-label="Usuarios">
+      <mat-icon matSuffix>pets</mat-icon>
+    </button>
+    <button class="nav-item" aria-label="Perfil">
+      <mat-icon matSuffix>3p</mat-icon>
+    </button>
+    <button class="nav-item" aria-label="Galería">
+      <mat-icon matSuffix>person</mat-icon>
+    </button>
+  </nav>
+  <!-- FIN FOOTER -->
+
+  <ng-template #cargando>
+    <p>Cargando...</p>
+  </ng-template>
+</div>

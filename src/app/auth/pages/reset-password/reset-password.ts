@@ -1,16 +1,16 @@
-import { ChangeDetectionStrategy, Component, inject, signal } from '@angular/core';
-import { CommonModule, NgIf } from '@angular/common';
+import { ChangeDetectionStrategy, Component, inject, OnInit, signal } from '@angular/core';
+import { CommonModule } from '@angular/common';
 import { FormBuilder, FormGroup, ReactiveFormsModule, Validators } from '@angular/forms';
 import { Router } from '@angular/router';
-import { MatButtonModule } from '@angular/material/button';
 import { MatToolbarModule } from '@angular/material/toolbar';
+import { MatButtonModule } from '@angular/material/button';
 import { MatIconModule } from '@angular/material/icon';
 import { MatFormFieldModule } from '@angular/material/form-field';
 import { MatInputModule } from '@angular/material/input';
-import { AuthService } from '../auth.service';
+import { AuthService } from '../../services/auth.service';
 
 @Component({
-  selector: 'app-register',
+  selector: 'app-reset-password',
   imports: [
     CommonModule,
     ReactiveFormsModule,
@@ -20,19 +20,17 @@ import { AuthService } from '../auth.service';
     MatFormFieldModule,
     MatInputModule,
     MatIconModule,
-    NgIf
   ],
-  templateUrl: './register.html',
-  styleUrls: ['./register.scss'],
+  templateUrl: './reset-password.html',
+  styleUrls: ['./reset-password.scss'],
   changeDetection: ChangeDetectionStrategy.OnPush,
 })
-export class Register {
-  registerForm!: FormGroup;
+export class ResetPassword implements OnInit {
+  resetForm!: FormGroup;
   showPassword = false;
+  showConfirmPassword = false;
   isLoading = false;
-
   hasError = signal(false);
-  isPosting = signal(false);
   authService = inject(AuthService);
 
   constructor(
@@ -44,46 +42,28 @@ export class Register {
     this.initForm();
   }
 
-  // Input Password
-  hide = signal(true);
-  clickEvent(event: MouseEvent) {
-    this.hide.set(!this.hide());
-    event.stopPropagation();
-  }
-
   private initForm(): void {
-    this.registerForm = this.fb.group({
-      userName: ['', [Validators.required, Validators.minLength(3)]],
-      nombre: ['', [Validators.required, Validators.minLength(2)]],
-      apellido: ['', [Validators.required, Validators.min(2)]],
-      email: ['', [Validators.required, Validators.email]],
-      password: ['', [Validators.required, Validators.minLength(6)]],
-      telefono: ['', [Validators.required]]
+    this.resetForm = this.fb.group({
+      passwodActual: ['', [Validators.required, Validators.minLength(8)]],
+      passwordNuevo: ['', [Validators.required, Validators.minLength(8)]],
     });
   }
 
   togglePasswordVisibility(field: 'password' | 'confirm'): void {
     if (field === 'password') {
       this.showPassword = !this.showPassword;
+    } else {
+      this.showConfirmPassword = !this.showConfirmPassword;
     }
   }
 
   onSubmit(): void {
-    if (this.registerForm.invalid) {
+    if (this.resetForm.valid) {
       this.isLoading = true;
-      this.registerForm.markAllAsTouched();
-      this.hasError.set(true);
-      setTimeout(() => {
-        this.hasError.set(false);
-      }, 2000);
-      return;
-    }
+      const { passwodActual, passwordNuevo } = this.resetForm.value;
 
-    console.log('✅ Login Data:', this.registerForm.value);
-    const { userName = '', nombre = '', apellido = '', email = '', password = '', telefono = ''} = this.registerForm.value;
-    this.isPosting.set(true);
-
-    this.authService.register(userName!, nombre!, apellido!, email!, password!, telefono!).subscribe((isAuthenticated) => {
+      this.authService.reset(passwodActual!, passwordNuevo!).subscribe((isAuthenticated) => {
+      console.log(isAuthenticated)
       if (isAuthenticated) {
         this.router.navigateByUrl('/');
         return;
@@ -94,8 +74,16 @@ export class Register {
         this.hasError.set(false);
       }, 2000);
     })
-  }
 
+      // Simulación de login
+      setTimeout(() => {
+        this.isLoading = false;
+        this.router.navigate(['/dashboard']);
+      }, 1500);
+    } else {
+      this.markFormGroupTouched(this.resetForm);
+    }
+  }
 
   navigateToRegister(): void {
     this.router.navigate(['/register']);
@@ -113,7 +101,7 @@ export class Register {
   }
 
   get usernameError(): string {
-    const control = this.registerForm.get('username');
+    const control = this.resetForm.get('username');
     if (control?.hasError('required') && control.touched) {
       return 'El usuario es requerido';
     }
@@ -124,7 +112,7 @@ export class Register {
   }
 
   get passwordError(): string {
-    const control = this.registerForm.get('password');
+    const control = this.resetForm.get('password');
     if (control?.hasError('required') && control.touched) {
       return 'La contraseña es requerida';
     }

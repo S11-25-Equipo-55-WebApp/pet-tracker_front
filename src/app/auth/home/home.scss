@@ -1,7 +1,7 @@
 // Variables
 $primary-color: #FF9966;
 $primary-dark: #FF7744;
-$secondary-color: #1A4D5C;
+$secondary-color: #0d6153;
 $background-light: #F5F5F5;
 $text-primary: #333333;
 $text-secondary: #666666;
@@ -48,6 +48,18 @@ $white: #FFFFFF;
   top: 0;
   z-index: 100;
 
+  // Agrega estas reglas para mat-toolbar
+  mat-toolbar {
+    // Evita que mat-toolbar crezca y tome todo el espacio
+    flex-grow: 0;
+    // Asegúrate de resetear cualquier padding/margin no deseado de mat-toolbar si es necesario
+    padding: 0;
+    min-height: auto; // Opcional: para que tome la altura mínima de su contenido
+    height: auto;
+    background: none; // Si quieres que sea transparente y solo muestre el botón
+    box-shadow: none; // Si quieres quitar cualquier sombra por defecto
+  }
+
   .back-button,
   .menu-button {
     @include button-reset;
@@ -85,34 +97,43 @@ $white: #FFFFFF;
 // Logo Section
 .logo-section {
   text-align: center;
-  margin-bottom: 40px;
+  margin: 25px;
 
   .logo-circle {
     width: 120px;
     height: 120px;
-    margin: 0 auto 20px;
+    margin: 0 auto 50px;
     background: linear-gradient(135deg, #B8977C 0%, #9D7B5F 100%);
     border-radius: 50%;
     @include flex-center;
     box-shadow: 0 8px 16px rgba(0, 0, 0, 0.15);
 
-    .logo-icon {
-      width: 70px;
-      height: 70px;
-    }
+    .logo-img {
+        width: 100%;
+        /* controlas qué tan grande se ve */
+        height: 100%;
+        object-fit: contain;
+      }
   }
 
   .app-title {
     font-size: 24px;
     font-weight: 600;
-    color: $text-primary;
+    color: $text-secondary;
     margin: 0 0 8px;
   }
 
+
   .app-subtitle {
-    font-size: 14px;
+    font-size: 18px;
     color: $text-secondary;
     margin: 0;
+  }
+
+  .app-text {
+    font-size: 15px;
+    color: $secondary-color;
+    margin-bottom: -10px;
   }
 }
 
@@ -124,6 +145,13 @@ $white: #FFFFFF;
 
 .form-group {
   margin-bottom: 24px;
+  // Aseguramos que mat-form-field ocupe el ancho completo
+  mat-form-field {
+    width: 100%;
+    // Resetear márgenes y padding que Material pueda añadir
+    margin: 0;
+    padding: 0;
+  }
 
   .input-wrapper {
     position: relative;
@@ -197,13 +225,13 @@ $white: #FFFFFF;
 .submit-button {
   width: 100%;
   padding: 16px;
-  margin-top: 32px;
+  margin-top: 15px;
   font-size: 18px;
   font-weight: 600;
   color: $white;
   background: linear-gradient(135deg, $primary-color 0%, $primary-dark 100%);
   border: none;
-  border-radius: 12px;
+  border-radius: 50px;
   cursor: pointer;
   transition: all 0.3s;
   box-shadow: 0 4px 12px rgba(255, 153, 102, 0.3);
@@ -258,6 +286,7 @@ $white: #FFFFFF;
     color: $primary-color;
     font-size: 16px;
     font-weight: 600;
+    margin-bottom: 10px;
     text-decoration: underline;
     transition: color 0.2s;
 
@@ -319,8 +348,8 @@ $white: #FFFFFF;
     height: 100px;
 
     .logo-icon {
-      width: 60px;
-      height: 60px;
+      width: 100px;
+      height: 100px;
     }
   }
 
@@ -350,4 +379,23 @@ $white: #FFFFFF;
 .register-link:focus-visible {
   outline: 2px solid $primary-color;
   outline-offset: 2px;
+}
+
+
+.example-container mat-form-field + mat-form-field {
+  margin-left: 8px;
+}
+
+.example-right-align {
+  text-align: right;
+}
+
+input.example-right-align::-webkit-outer-spin-button,
+input.example-right-align::-webkit-inner-spin-button {
+  display: none;
+}
+
+input.example-right-align {
+  appearance: textfield;
+  -moz-appearance: textfield;
 }

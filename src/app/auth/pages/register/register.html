@@ -17,20 +17,20 @@
     <!-- Logo Section -->
     <div class="logo-section">
       <div class="logo-circle">
-        <img src="/images/logo.png" alt="">
+        <img class="logo-img" src="/images/logo.png" alt="">
       </div>
       <h2 class="app-title">Pet Health Tracker</h2>
-      <p class="app-subtitle">Usuario</p>
+      <p class="app-subtitle">Registro de usuarios</p>
     </div>
 
     <!-- Login Form -->
-    <form [formGroup]="loginForm" (ngSubmit)="onSubmit()" class="login-form">
-      <!-- Username Field -->
+    <form [formGroup]="registerForm" (ngSubmit)="onSubmit()" class="login-form">
+       <!-- Username Field -->
       <div class="form-group">
         <div class="input-wrapper">
           <mat-form-field appearance="outline">
             <mat-label>Usuario</mat-label>
-            <input matInput placeholder="Agregar usuario" formControlName="userName">
+            <input matInput placeholder="Agregar el username" formControlName="userName">
             <mat-icon matSuffix>person</mat-icon>
             <mat-hint>supporting-text</mat-hint>
           </mat-form-field>
@@ -38,8 +38,74 @@
           <button
             type="button"
             class="clear-button"
-            *ngIf="loginForm.get('username')?.value"
-            (click)="loginForm.get('username')?.setValue('')"
+            *ngIf="registerForm.get('username')?.value"
+            (click)="registerForm.get('username')?.setValue('')"
+            aria-label="Limpiar campo"
+          >
+          </button>
+        </div>
+        <span class="error-message" *ngIf="usernameError">{{ usernameError }}</span>
+      </div>
+
+      <!-- Name Field -->
+      <div class="form-group">
+        <div class="input-wrapper">
+          <mat-form-field appearance="outline">
+            <mat-label>Nombre</mat-label>
+            <input matInput placeholder="Agregar el nombre" formControlName="nombre">
+            <mat-icon matSuffix>person</mat-icon>
+            <mat-hint>supporting-text</mat-hint>
+          </mat-form-field>
+
+          <button
+            type="button"
+            class="clear-button"
+            *ngIf="registerForm.get('username')?.value"
+            (click)="registerForm.get('username')?.setValue('')"
+            aria-label="Limpiar campo"
+          >
+          </button>
+        </div>
+        <span class="error-message" *ngIf="usernameError">{{ usernameError }}</span>
+      </div>
+
+      <!-- LastName Field -->
+      <div class="form-group">
+        <div class="input-wrapper">
+          <mat-form-field appearance="outline">
+            <mat-label>Apellido</mat-label>
+            <input matInput placeholder="Agregar el Apellido" formControlName="apellido">
+            <mat-icon matSuffix>person</mat-icon>
+            <mat-hint>supporting-text</mat-hint>
+          </mat-form-field>
+
+          <button
+            type="button"
+            class="clear-button"
+            *ngIf="registerForm.get('username')?.value"
+            (click)="registerForm.get('username')?.setValue('')"
+            aria-label="Limpiar campo"
+          >
+          </button>
+        </div>
+        <span class="error-message" *ngIf="usernameError">{{ usernameError }}</span>
+      </div>
+
+      <!-- Email Field -->
+      <div class="form-group">
+        <div class="input-wrapper">
+          <mat-form-field appearance="outline">
+            <mat-label>Correo</mat-label>
+            <input matInput placeholder="Agregar el correo" formControlName="email">
+            <mat-icon matSuffix>email</mat-icon>
+            <mat-hint>supporting-text</mat-hint>
+          </mat-form-field>
+
+          <button
+            type="button"
+            class="clear-button"
+            *ngIf="registerForm.get('username')?.value"
+            (click)="registerForm.get('username')?.setValue('')"
             aria-label="Limpiar campo"
           >
           </button>
@@ -52,7 +118,7 @@
         <div class="input-wrapper">
           <mat-form-field appearance="outline">
             <mat-label>Password</mat-label>
-            <input matInput [type]="showPassword ? 'text' : 'password'" formControlName="password">
+            <input matInput [type]="showPassword ? 'text' : 'password'"  placeholder="Agregar el password" formControlName="password">
             <mat-icon matSuffix>visibility</mat-icon>
             <mat-hint>supporting-text</mat-hint>
           </mat-form-field>
@@ -72,12 +138,12 @@
       <button
         type="submit"
         class="submit-button"
-        [disabled]="isLoading || loginForm.invalid"
+        [disabled]="isLoading || registerForm.invalid"
         [class.loading]="isLoading"
       >
         <span *ngIf="!isLoading" class="button-content">
           <mat-icon matSuffix>stars</mat-icon>
-          Ingresar
+          Registrar
         </span>
         <span *ngIf="isLoading" class="spinner"></span>
       </button>

@@ -1,1 +1,73 @@
-<p>home works!</p>,
+<div class="login-container">
+  <!-- Header -->
+  <header class="header">
+    <button class="back-button" (click)="goBack()" aria-label="Volver">
+      <svg width="24" height="24" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2">
+        <path d="M19 12H5M12 19l-7-7 7-7"/>
+      </svg>
+    </button>
+
+    <button matIconButton class="menu-button">
+      <mat-icon>menu</mat-icon>
+    </button>
+  </header>
+
+  <!-- Main Content -->
+  <main class="main-content">
+    <!-- Logo Section -->
+    <div class="logo-section">
+      <div class="logo-circle">
+        <img src="/images/logo.png" alt="">
+      </div>
+      <h2 class="app-title">Pet Health Tracker</h2>
+      <p class="app-subtitle">Bienvenido</p>
+    </div>
+
+
+    <div class="logo-section">
+      <p class="app-text">
+        Mantén la salud de tu mascota, siempre al día. <br>
+        <span>
+          Registra vacunas, citas y recordatorios. Despreocupate de lo realmente importante.
+        </span>
+      </p>
+    </div>
+
+      <!-- Submit Button -->
+      <button type="submit" class="submit-button" [disabled]="isLoading" (click)="onSubmit()"
+        [class.loading]="isLoading">
+        <span *ngIf="!isLoading" class="button-content">
+          <mat-icon matSuffix>stars</mat-icon>
+          Comenzar
+        </span>
+        <span *ngIf="isLoading" class="spinner"></span>
+      </button>
+
+      <!-- Register Link -->
+      <div class="register-section">
+        <button type="button" class="register-link" (click)="navigateToRegister()">
+          Registrarse
+        </button>
+        <div>
+          <a routerLink="/auth/reset-password" class="register-question">¿Olvidó su contraseña?</a>
+        </div>
+      </div>
+
+
+  </main>
+  <!-- Bottom Navigation -->
+  <nav class="bottom-nav">
+    <button class="nav-item" aria-label="Inicio">
+      <mat-icon matSuffix>home</mat-icon>
+    </button>
+    <button class="nav-item" aria-label="Usuarios">
+      <mat-icon matSuffix>pets</mat-icon>
+    </button>
+    <button class="nav-item" aria-label="Perfil">
+      <mat-icon matSuffix>3p</mat-icon>
+    </button>
+    <button class="nav-item" aria-label="Galería">
+      <mat-icon matSuffix>person</mat-icon>
+    </button>
+  </nav>
+</div>

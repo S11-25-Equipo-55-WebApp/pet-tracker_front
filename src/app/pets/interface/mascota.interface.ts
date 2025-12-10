@@ -1,4 +1,7 @@
 export interface IMascota {
+peso: any;
+sexo: any;
+razaNombre: any;
     mascotaId?: number;
     nombre: string;
     codigo?: string;
