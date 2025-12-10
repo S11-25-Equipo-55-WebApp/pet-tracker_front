@@ -82,7 +82,7 @@ export class Login implements OnInit {
     this.authService.login(userName!, password!).subscribe((isAuthenticated) => {
       console.log(isAuthenticated)
       if (isAuthenticated) {
-        this.router.navigateByUrl('/');
+        this.router.navigateByUrl('/pets');
         return;
       }
 

@@ -1,0 +1,75 @@
+<div class="container">
+
+  
+  <h2>Ficha de la mascota</h2>
+  
+  <div class="info-basica">
+    <h3>Datos básicos: </h3>
+    <p>Nombre: {{capitalizado}}</p>
+    <p>Fecha de nacimiento: {{pet.fechaNacimiento}}</p>
+    <p>Especie: {{specie.nombre}}</p>
+    <p>Raza: {{race.nombre}}</p>
+    <p>Peso actual: 5 kg</p>
+  </div>
+  
+  <div>
+    
+    <h3>Vacunas</h3>
+    
+    <!-- Si tiene vacunas -->
+    <div *ngIf="vaccines.length > 0; else sinVacunas">
+      <div *ngFor="let vaccine of vaccines" class="vacuna-item">
+        {{ vaccine.tipoVacunaNombre ?? 'Cargando tipo...' }}
+        Fecha de aplicación: {{ vaccine.fechaAplicacion}}
+        Fecha proxima: {{ vaccine.fechaProxima}}
+      </div>
+    </div>
+    
+    <!-- Si NO tiene vacunas -->
+    <ng-template #sinVacunas>
+      <p style="color: gray; font-style: italic;">Sin vacunas asociadas</p>
+    </ng-template>
+  </div>
+  
+  
+  <h3>Desparacitaciones</h3>
+  
+  <div *ngIf="dewormings.length > 0; else sinDesparacitaciones">
+    <div *ngFor="let deworming of dewormings" class="desparacitacion-item">
+      {{ deworming.tipoDesparacitacionNombre ?? 'Cargando tipo...' }}
+      Fecha de aplicación: {{ deworming.fechaAplicacion }}
+      Fecha proxima: {{ deworming.fechaProxima }}
+    </div>
+  </div>
+  
+  <ng-template #sinDesparacitaciones>
+    <p style="color: gray; font-style: italic;">Sin desparacitaciones asociadas</p>
+  </ng-template>
+  
+  <h3>Dietas</h3>
+  
+  <div *ngIf="diets.length > 0; else sinDietas">
+    <div *ngFor="let diet of diets" class="dietas-item">
+      {{ diet.tipoAlimentoNombre ?? 'Cargando tipo...' }}
+      Porción del día: {{diet.porcionDia}} gramos
+    </div>
+  </div>
+  
+  <ng-template #sinDietas>
+    <p style="color: gray; font-style: italic;">Sin dietas asociadas</p>
+  </ng-template>
+  
+  <h3>Medicaciones</h3>
+  
+  <div *ngIf="medications.length > 0; else sinMedicaciones">
+    <div *ngFor="let medication of medications" class="medicaciones-item">
+      Tipo: {{ medication.tipoMedicacionNombre ?? 'Cargando tipo...' }} - Nombre: {{ medication.nombre }}
+      Frecuencia: Cada {{ medication.frecuencia }} horas
+      
+    </div>
+  </div>
+  
+  <ng-template #sinMedicaciones>
+    <p style="color: gray; font-style: italic;">Sin medicaciones asociadas</p>
+  </ng-template>
+</div>  

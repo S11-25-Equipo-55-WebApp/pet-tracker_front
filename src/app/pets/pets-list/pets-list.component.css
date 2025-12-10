@@ -1,6 +1,6 @@
 .screen {
   width: 360px;
-  height: 800px;
+  min-height: 100vh; /* ⬅ se ajusta al alto de la pantalla SIN cortar contenido */
   margin: 0 auto;
   background: #ffffff;
   display: flex;
@@ -57,6 +57,7 @@
   flex: 1;
   overflow-y: auto;
   padding-right: 6px;
+  padding-bottom: 80px; /* suficiente para que no quede tapado */
 }
 
 /* BUTTON */
@@ -74,6 +75,7 @@
   justify-content: center;
   gap: 6px;
   margin-top: 16px;
+  margin-bottom: 90px; /* si querés que el botón quede arriba del footer */
 }
 
 .bottom-nav {
