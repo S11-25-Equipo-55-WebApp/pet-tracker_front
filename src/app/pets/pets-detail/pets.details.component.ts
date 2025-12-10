@@ -71,6 +71,10 @@ export class PetsDetailsComponent implements OnInit {
     this.router.navigate([`/pet-details/${this.idMascota}/deworming`]);
   }
 
+  dietForm() {
+    this.router.navigate([`/pet-details/${this.idMascota}/diet`]);
+  }
+
   abrirCalendario() {
     const dialogRef = this.dialog.open(CalendarDialogComponent, {
       width: '320px',

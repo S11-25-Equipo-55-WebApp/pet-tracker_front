@@ -11,22 +11,6 @@
   <main class="main-content">
     <form [formGroup]="dietForm" (ngSubmit)="onSubmit()" class="diet-form">
       
-      <!-- Mascota Select -->
-      <div class="form-group">
-        <mat-form-field appearance="outline" class="full-width">
-          <mat-label>Mascota</mat-label>
-          <mat-select formControlName="mascotaId" placeholder="Seleccione la mascota">
-            @for (pet of pets(); track pet.mascotaId) {
-              <mat-option [value]="pet.mascotaId">{{ pet.nombre }}</mat-option>
-            }
-          </mat-select>
-          <mat-icon matPrefix>pets</mat-icon>
-          @if (mascotaIdInvalid) {
-            <mat-error>La mascota es requerida</mat-error>
-          }
-        </mat-form-field>
-      </div>
-
       <!-- Tipo de Alimento Select -->
       <div class="form-group">
         <mat-form-field appearance="outline" class="full-width">
@@ -85,7 +69,7 @@
             matInput 
             formControlName="notas" 
             placeholder="Agregar notas adicionales (horarios, frecuencias, etc.)"
-            rows="4"
+            rows="2"
             maxlength="500">
           </textarea>
           <mat-icon matPrefix>notes</mat-icon>

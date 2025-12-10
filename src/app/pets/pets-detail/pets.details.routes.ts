@@ -30,6 +30,12 @@ export const PETS_ROUTES2: Routes = [
           import('../../deworming/pages/dworming-form/dworming-form')
             .then(c => c.DwormingForm)
       },
+      {
+        path: 'diet',
+        loadComponent: () =>
+          import('../../diet/pages/diet-form/diet-form')
+            .then(c => c.DietForm)
+      },
       { path: '', redirectTo: 'ficha', pathMatch: 'full' }
     ]
   }
