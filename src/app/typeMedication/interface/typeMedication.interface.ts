@@ -1,5 +1,5 @@
     export interface ITypeMedication{
-    tipoMedicamentoId: number,
+    tipoMedId: number,
     nombre: string,
     codigo: string
 }

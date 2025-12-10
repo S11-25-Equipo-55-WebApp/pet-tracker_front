@@ -7,6 +7,8 @@ import { ResetPassword } from './reset-password/reset-password';
 import { VaccineForm } from '../vaccine/pages/vaccine-form/vaccine-form';
 import { DwormingForm } from '../deworming/pages/dworming-form/dworming-form';
 import { DietForm } from '../diet/pages/diet-form/diet-form';
+import { ClinicalConsultation } from '../clinicalConsultation/pages/clinical-consultation/clinical-consultation';
+import { MedicationForm } from '../medication/pages/medication-form/medication-form';
 
 export const authRoutes: Routes = [
   {
@@ -48,6 +50,18 @@ export const authRoutes: Routes = [
         title: 'Dworming',
         component: DwormingForm
       },
+      {
+        path: 'clinical-form',
+        title: 'Clinical Form',
+        component:ClinicalConsultation
+      },
+      {
+        path: 'medication-form',
+        title: "Medication Form",
+        component: MedicationForm
+
+      },
+      
       {
         path: '**',
         redirectTo: 'home'

@@ -1,0 +1,144 @@
+<div class="consultation-form-container">
+  <!-- Header -->
+  <header class="header">
+    <button class="back-button" (click)="goBack()" aria-label="Volver">
+      <mat-icon>arrow_back</mat-icon>
+    </button>
+    <h1 class="header-title">Registrar Consulta Clínica</h1>
+  </header>
+
+  <!-- Main Content -->
+  <main class="main-content">
+    <form [formGroup]="consultationForm" (ngSubmit)="onSubmit()" class="consultation-form">
+      
+      <!-- Mascota Select -->
+      <div class="form-group">
+        <mat-form-field appearance="outline" class="full-width">
+          <mat-label>Mascota</mat-label>
+          <mat-select formControlName="mascotaId" placeholder="Seleccione la mascota">
+            @for (pet of pets(); track pet.mascotaId) {
+              <mat-option [value]="pet.mascotaId">{{ pet.nombre }}</mat-option>
+            }
+          </mat-select>
+          <mat-icon matPrefix>pets</mat-icon>
+          @if (mascotaIdInvalid) {
+            <mat-error>La mascota es requerida</mat-error>
+          }
+        </mat-form-field>
+      </div>
+
+      <!-- Fecha de Consulta -->
+      <div class="form-group">
+        <mat-form-field appearance="outline" class="full-width">
+          <mat-label>Fecha de consulta</mat-label>
+          <input matInput [matDatepicker]="pickerConsulta" formControlName="fechaConsulta" placeholder="dd/mm/aa">
+          <mat-datepicker-toggle matIconSuffix [for]="pickerConsulta"></mat-datepicker-toggle>
+          <mat-datepicker #pickerConsulta></mat-datepicker>
+          <mat-icon matPrefix>event</mat-icon>
+          @if (fechaConsultaInvalid) {
+            <mat-error>La fecha de consulta es requerida</mat-error>
+          }
+        </mat-form-field>
+      </div>
+
+      <!-- Motivo -->
+      <div class="form-group">
+        <mat-form-field appearance="outline" class="full-width">
+          <mat-label>Motivo</mat-label>
+          <textarea 
+            matInput 
+            formControlName="motivo" 
+            placeholder="Describe el motivo de la consulta"
+            rows="3"
+            maxlength="200">
+          </textarea>
+          <mat-icon matPrefix>description</mat-icon>
+          <mat-hint align="end">{{ consultationForm.get('motivo')?.value?.length || 0 }}/200</mat-hint>
+          @if (motivoInvalid) {
+            <mat-error>El motivo es requerido</mat-error>
+          }
+        </mat-form-field>
+      </div>
+
+      <!-- Diagnóstico -->
+      <div class="form-group">
+        <mat-form-field appearance="outline" class="full-width">
+          <mat-label>Diagnóstico</mat-label>
+          <textarea 
+            matInput 
+            formControlName="diagnostico" 
+            placeholder="Diagnóstico del veterinario"
+            rows="3"
+            maxlength="300">
+          </textarea>
+          <mat-icon matPrefix>medical_services</mat-icon>
+          <mat-hint align="end">{{ consultationForm.get('diagnostico')?.value?.length || 0 }}/300</mat-hint>
+          @if (diagnosticoInvalid) {
+            <mat-error>El diagnóstico es requerido</mat-error>
+          }
+        </mat-form-field>
+      </div>
+
+      <!-- Veterinario -->
+      <div class="form-group">
+        <mat-form-field appearance="outline" class="full-width">
+          <mat-label>Veterinario</mat-label>
+          <input 
+            matInput 
+            formControlName="veterinario" 
+            placeholder="Nombre del veterinario"
+            maxlength="100">
+          <mat-icon matPrefix>person</mat-icon>
+          <mat-hint align="end">{{ consultationForm.get('veterinario')?.value?.length || 0 }}/100</mat-hint>
+          @if (veterinarioInvalid) {
+            <mat-error>El nombre del veterinario es requerido</mat-error>
+          }
+        </mat-form-field>
+      </div>
+
+      <!-- Notas -->
+      <div class="form-group">
+        <mat-form-field appearance="outline" class="full-width">
+          <mat-label>Notas adicionales</mat-label>
+          <textarea 
+            matInput 
+            formControlName="notas" 
+            placeholder="Agregar comentarios adicionales"
+            rows="4"
+            maxlength="500">
+          </textarea>
+          <mat-icon matPrefix>notes</mat-icon>
+          <mat-hint align="end">{{ consultationForm.get('notas')?.value?.length || 0 }}/500</mat-hint>
+        </mat-form-field>
+      </div>
+
+      <!-- Buttons -->
+      <div class="form-actions">
+        <button 
+          mat-stroked-button 
+          type="button" 
+          (click)="resetForm()"
+          [disabled]="isSaving()">
+          <mat-icon>refresh</mat-icon>
+          Limpiar
+        </button>
+
+        <button 
+          mat-flat-button 
+          color="primary" 
+          type="submit"
+          [disabled]="isSaving() || consultationForm.invalid">
+          @if (isSaving()) {
+            <mat-spinner diameter="20"></mat-spinner>
+          } @else {
+            <ng-container>
+              <mat-icon>save</mat-icon>
+              Guardar
+            </ng-container>
+          }
+        </button>
+      </div>
+
+    </form>
+  </main>
+</div>
