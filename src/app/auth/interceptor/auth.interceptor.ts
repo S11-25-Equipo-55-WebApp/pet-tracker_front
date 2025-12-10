@@ -5,12 +5,13 @@ import { AuthService } from "../services/auth.service";
 
 export function authInterceptor(
   req: HttpRequest<unknown>, next: HttpHandlerFn): Observable<HttpEvent<unknown>> {
-  const token = sessionStorage.getItem('token');
+  // const token = inject(AuthService).token();
+  const token = sessionStorage.getItem('usuarioId');
   const newReq = req.clone({
     headers: req.headers.append('Authorization', `Bearer ${token}`),
   });
 
- /* console.log('🔥 Interceptor ejecutado:', req.url); */
+  console.log('🔥 Interceptor ejecutado:', req.url);
 
   return next(newReq);
 }

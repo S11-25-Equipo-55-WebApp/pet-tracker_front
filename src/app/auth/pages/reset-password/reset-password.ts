@@ -63,7 +63,7 @@ export class ResetPassword implements OnInit {
       const { passwodActual, passwordNuevo } = this.resetForm.value;
 
       this.authService.reset(passwodActual!, passwordNuevo!).subscribe((isAuthenticated) => {
-      /* console.log(isAuthenticated) */
+      console.log(isAuthenticated)
       if (isAuthenticated) {
         this.router.navigateByUrl('/');
         return;
