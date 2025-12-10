@@ -1,12 +1,19 @@
 .screen {
   width: 360px;
-  height: 800px;
+  min-height: 100vh; /* ⬅ se ajusta al alto de la pantalla SIN cortar contenido */
   margin: 0 auto;
   background: #ffffff;
   display: flex;
   flex-direction: column;
   padding: 16px;
   box-sizing: border-box;
+}
+
+.cabecera{
+  position: sticky;
+  top: 0;
+  z-index: 1000; /* para que quede por encima del contenido */
+  background: white; /* evita que el contenido se vea por detrás */
 }
 
 .header {
@@ -492,7 +499,52 @@
     background-color: rgba(103, 80, 164, 0.08); 
 }
 
+/* COMIENZO DE CSS DE FOOTER */
+.bottom-nav {
+  position: fixed;
+  bottom: 0;
+  left: 50%;
+  transform: translateX(-50%);
+  width: 320px;
+  max-width: 440px;
+  display: flex;
+  justify-content: space-around;
+  align-items: center;
+  padding: 12px 20px;
+   background-color: #1A4D5C;/* reemplazo de $secondary-color */
+  box-shadow: 0 -2px 10px rgba(0, 0, 0, 0.1);
+  z-index: 1000;
+}
+
+/* Botones individuales */
+.nav-item {
+  width: 48px;
+  height: 48px;
+  color: rgba(255, 255, 255, 0.7);
+  border: none;
+  background: none;
+  border-radius: 12px;
+  display: flex;
+  justify-content: center;
+  align-items: center;
+  cursor: pointer;
+  transition: all 0.3s;
+}
+
+.nav-item:hover {
+  color: #fff;
+  background-color: rgba(255, 255, 255, 0.1);
+}
+
+.nav-item:active {
+  transform: scale(0.95);
+}
+
+/* Tamaño del icono */
+.material-icons {
+  font-size: 28px;
+}
 
 
 
-
+/* FIN DE CSS DE FOOTER */

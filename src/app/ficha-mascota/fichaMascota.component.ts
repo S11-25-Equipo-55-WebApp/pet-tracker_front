@@ -1,42 +1,42 @@
 import { Component, OnInit } from '@angular/core';
 import { ActivatedRoute, Router } from '@angular/router';
-import { PetService } from '../pets.service';
-import { SpecieService } from '../../species/species.service';
-import { RaceService } from '../../race/race.service';
+import { PetService } from '../pets/pets.service';
+import { SpecieService } from '../species/species.service';
+import { RaceService } from '../race/race.service';
 import { MatIcon } from "@angular/material/icon";
-import { IDateVaccine, IVaccine } from '../../vaccine/interface/vaccine.interface';
-import { VaccineService } from '../../vaccine/vaccine.service';
+import { IDateVaccine, IVaccine } from '../vaccine/interface/vaccine.interface';
+import { VaccineService } from '../vaccine/vaccine.service';
 import { CommonModule } from '@angular/common';
-import { TypeVaccineService } from '../../typeVaccine/typeVaccine.service';
-import { DewormingService } from '../../deworming/deworming.service';
-import { TypeDewormingService } from '../../typeDeworming/typeDeworming.service';
-import { IDateDeworming, IDeworming } from '../../deworming/interface/deworming.interface';
-import { DietService } from '../../diet/diet.service';
-import { IDiet } from '../../diet/interface/diet.interface';
-import { TypeFoodService } from '../../typeFood/typeFood.service';
-import { MedicationService } from '../../medication/medication.service';
-import { TypeMedicationService } from '../../typeMedication/typeMedication.service';
-import { IMedication } from '../../medication/interface/medication.interface';
-import { MatDialog, MatDialogModule } from '@angular/material/dialog';
-import { CalendarDialogComponent } from '../../calendar/calendar.component';
-import { FichaMascota } from "../../ficha-mascota/fichaMascota.component";
-
+import { TypeVaccineService } from '../typeVaccine/typeVaccine.service';
+import { DewormingService } from '../deworming/deworming.service';
+import { TypeDewormingService } from '../typeDeworming/typeDeworming.service';
+import { IDateDeworming, IDeworming } from '../deworming/interface/deworming.interface';
+import { DietService } from '../diet/diet.service';
+import { IDiet } from '../diet/interface/diet.interface';
+import { TypeFoodService } from '../typeFood/typeFood.service';
+import { MedicationService } from '../medication/medication.service';
+import { TypeMedicationService } from '../typeMedication/typeMedication.service';
+import { IMedication } from '../medication/interface/medication.interface';
+import { MatDialog } from '@angular/material/dialog';
 
 @Component({
-  selector: 'app-pet-details',
+  selector: 'app-ficha-mascota',
   standalone: true,
-  imports: [MatIcon, CommonModule, FichaMascota],
-  templateUrl: './pets.details.component.html',
-  styleUrls: ['./pets.details.component.css']
+  imports: [CommonModule],
+  templateUrl: './fichaMascota.component.html',
+  styleUrl: './fichaMascota.component.css',
 })
+export class FichaMascota  implements OnInit {
 
-export class PetsDetailsComponent implements OnInit {
 
   pet: any;
   specie: any;
   specieId!: number;
   race: any;
   raceId!: number;
+
+  diets: IDiet[] = [];
+  medications: IMedication[] = [];
 
   vaccines: IVaccine[] = [];
   dewormings: IDeworming[] = [];
@@ -60,32 +60,17 @@ export class PetsDetailsComponent implements OnInit {
     private typeVaccineService: TypeVaccineService,
     private dewormingService: DewormingService,
     private typeDewormingService: TypeDewormingService,
+    private dietService: DietService,
+    private typeDietService: TypeFoodService,
+    private medicationService: MedicationService,
+    private typeMedicationService: TypeMedicationService,
     private router: Router,
     private dialog: MatDialog
 
   ) { }
 
-  volver() {
-    this.router.navigate(['/pets']);
-  }
 
-  abrirCalendario() {
-    const dialogRef = this.dialog.open(CalendarDialogComponent, {
-      width: '320px',
-      data: {
-        vacunas: this.dateVaccines,
-        desparacitaciones: this.dateDewormins
-      }
-
-    });
-    dialogRef.afterClosed().subscribe((fechaSeleccionada: Date | null) => {
-      if (fechaSeleccionada) {
-        console.log('Fecha seleccionada:', fechaSeleccionada);
-      }
-    });
-  }
-
-  ngOnInit(): void {
+ngOnInit(): void {
     const id = Number(this.route.snapshot.paramMap.get('id'));
 
     this.nombre = localStorage.getItem('nombre') || '';
@@ -158,6 +143,36 @@ export class PetsDetailsComponent implements OnInit {
                 nombre: tipo.nombre
               });
             });
+        });
+      },
+      error: () => this.cargando = false
+    });
+  }
+
+  DietByPetId(id: number) {
+    this.dietService.getDietByIdPet(id).subscribe({
+      next: (data) => {
+        this.diets = data;
+        this.cargando = false;
+
+        this.diets.forEach(v => {
+          this.typeDietService.getTypeFoodById(v.tipoAlimentoId)
+            .subscribe(tipo => v.tipoAlimentoNombre= tipo.nombre);
+        });
+      },
+      error: () => this.cargando = false
+    });
+  }
+
+  MedicationsByPetId(id: number) {
+    this.medicationService.getMedicationByPetId(id).subscribe({
+      next: (data) => {
+        this.medications = data;
+        this.cargando = false;
+
+        this.medications.forEach(v => {
+          this.typeMedicationService.getTypeMedicationById(v.tipoMedicacionId)
+            .subscribe(tipo => v.tipoMedicacionNombre= tipo.nombre);
         });
       },
       error: () => this.cargando = false
