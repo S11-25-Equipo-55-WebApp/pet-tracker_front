@@ -40,3 +40,17 @@ export interface AuthResponse {
   usuario:  User;
   token: string;
 }
+
+export interface Usuario {
+  usuarioId: number;
+  userName: string;
+  nombre: string;
+  apellido: string;
+  email: string;
+  telefono: string;
+}
+
+export interface IAuthLoginResponse {
+  usuario: Usuario; // 👈 Cambiado
+  token: string;
+}

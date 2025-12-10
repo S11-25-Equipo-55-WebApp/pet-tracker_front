@@ -5,5 +5,11 @@
     fechaProxima: string,
     notas: string,
     mascotaId: number,
-    tipoVacunaId: number
+    tipoVacunaId: number,
+    tipoVacunaNombre? : string
+}
+
+export interface IDateVaccine{
+  fecha: string,
+  nombre: string,
 }

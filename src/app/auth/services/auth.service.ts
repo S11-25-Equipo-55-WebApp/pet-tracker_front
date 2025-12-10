@@ -16,7 +16,7 @@ export class AuthService {
   private _user = signal<User | null>(null);
   private _token = signal<string | null>(sessionStorage.getItem('token'));
 
-  constructor(private readonly authHttp: HttpClient) {}
+  constructor(private readonly authHttp: HttpClient) { }
 
   authStatus = computed<AuthStatus>(() => {
     if (this._authStatus() === 'checking') return 'checking';
@@ -27,29 +27,30 @@ export class AuthService {
   token = computed<string | null>(() => this._token());
 
 
-  register(userName: string, nombre: string, apellido: string, email: string, password: string, telefono?: string): Observable<boolean> {
-    return this.authHttp.post<AuthResponse>(`${baseUrl}/api/Usuario`, { userName, nombre, apellido, email, password })
-    .pipe(
-      tap(({ usuario, token }) => this.handleAuthSuccess(usuario, token )),
-      map(() => true),
-      catchError((err: any) => this.handleAuthError(err))
-    );
+  register(userName: string, nombre: string, apellido: string, email: string, password: string, telefono: string): Observable<boolean> {
+    return this.authHttp.post<AuthResponse>(`${baseUrl}/api/Usuario`, { userName, nombre, apellido, email, password, telefono })
+      .pipe(
+        tap(({ usuario, token }) => this.handleAuthSuccess(usuario, token)),
+        map(() => true),
+        catchError((err: any) => this.handleAuthError(err))
+      );
   }
 
   login(userName: string, password: string): Observable<boolean> {
     return this.authHttp.post<AuthResponse>(`${baseUrl}/api/Usuario/login`, { userName, password })
-    .pipe(
-      tap((resp) => {
-        const { usuario , token } = resp;
-        this._user.set(usuario);
-        this.handleAuthSuccess(usuario, token);
-        this.getUsuarioId();
-        return { usuario, token };
-      }),
-      map(() => true),
-      catchError((err: any) => this.handleAuthError(err))
-    );
+      .pipe(
+        tap((resp) => {
+          const { usuario, token } = resp;
+          this._user.set(usuario);
+          this.handleAuthSuccess(usuario, token);
+          this.getUsuarioId();
+          return { usuario, token };
+        }),
+        map(() => true),
+        catchError((err: any) => this.handleAuthError(err))
+      );
   }
+
 
   reset(passwordActual: string, passwordNuevo: string): Observable<any> {
     const id = this.getUsuarioId();
@@ -58,11 +59,11 @@ export class AuthService {
       return new Observable(observer => observer.error('Usuario no autenticado'));
     }
     return this.authHttp.post<AuthResponse>(`${baseUrl}/api/Usuario/${id}/CambiarPassword`, { passwordActual, passwordNuevo })
-    .pipe(
-      tap(({ usuario, token }) => this.handleAuthSuccess(usuario, token )),
-      map(() => true),
-      catchError((err: any) => this.handleAuthError(err))
-    );
+      .pipe(
+        tap(({ usuario, token }) => this.handleAuthSuccess(usuario, token)),
+        map(() => true),
+        catchError((err: any) => this.handleAuthError(err))
+      );
   }
 
   logout(): void {
@@ -79,7 +80,7 @@ export class AuthService {
     this._authStatus.set('authenticated');
   }
 
-  private handleAuthError(err: any): Observable<boolean>{
+  private handleAuthError(err: any): Observable<boolean> {
     this.logout();
     return of(false);
   }

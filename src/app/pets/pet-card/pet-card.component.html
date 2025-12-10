@@ -1,0 +1,13 @@
+<div class="card" (click)="verDetalle()">
+  
+  <img class="photo" [src]="pet.fotoMascota" alt="Pet">
+
+  <div class="info">
+    <div class="name">{{ pet.nombre }}</div>
+  </div>
+
+  <button class="menu-btn" (click)="$event.stopPropagation()">
+    <mat-icon>more_vert</mat-icon>
+  </button>
+
+</div>

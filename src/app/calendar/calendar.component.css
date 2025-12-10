@@ -1,0 +1,43 @@
+.demo-inline-calendar-card {
+  padding: 16px;
+  border-radius: 12px;
+  display: flex;
+  flex-direction: column;
+  gap: 16px;
+}
+
+.calendar-actions {
+  display: flex;
+  justify-content: flex-end;
+  gap: 12px;
+}
+
+
+.vacuna-day .mat-calendar-body-cell-content {
+  background-color: #ff4081 !important;
+  color: white;
+  border-radius: 50%;
+  font-weight: bold;
+  cursor: pointer;
+  transition: transform 0.2s;
+}
+
+.vacuna-day .mat-calendar-body-cell-content:hover {
+  transform: scale(1.2);
+  box-shadow: 0 0 5px rgba(0,0,0,0.3);
+}
+
+
+.desparacitacion-day .mat-calendar-body-cell-content {
+  background-color: #bf45ca !important;
+  color: white;
+  border-radius: 50%;
+  font-weight: bold;
+  cursor: pointer;
+  transition: transform 0.2s;
+}
+
+.desparacitacion-day .mat-calendar-body-cell-content:hover {
+  transform: scale(1.2);
+  box-shadow: 0 0 5px rgba(0,0,0,0.3);
+}
