@@ -10,22 +10,6 @@
   <!-- Main Content -->
   <main class="main-content">
     <form [formGroup]="dewormingForm" (ngSubmit)="onSubmit()" class="deworming-form">
-      
-      <!-- Mascota Select -->
-      <div class="form-group">
-        <mat-form-field appearance="outline" class="full-width">
-          <mat-label>Mascota</mat-label>
-          <mat-select formControlName="mascotaId" placeholder="Seleccione la mascota">
-            @for (pet of pets(); track pet.mascotaId) {
-              <mat-option [value]="pet.mascotaId">{{ pet.nombre }}</mat-option>
-            }
-          </mat-select>
-          <mat-icon matPrefix>pets</mat-icon>
-          @if (mascotaIdInvalid) {
-            <mat-error>La mascota es requerida</mat-error>
-          }
-        </mat-form-field>
-      </div>
 
       <!-- Tipo Desparasitación Select -->
       <div class="form-group">
@@ -79,7 +63,7 @@
             matInput 
             formControlName="notas" 
             placeholder="Agregar comentarios"
-            rows="4"
+            rows="2"
             maxlength="500">
           </textarea>
           <mat-icon matPrefix>notes</mat-icon>

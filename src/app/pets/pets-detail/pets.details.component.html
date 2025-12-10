@@ -46,6 +46,29 @@
 
     <div class="icon-carousel-container">
       <div class="icon-carousel">
+
+
+        <button class="m3-icon-chip" (click)="vaccineForm()">
+          <span class="material-symbols-outlined">
+            vaccines
+          </span>
+          <span class="chip-label">Vacunas</span>
+        </button>
+
+        <button class="m3-icon-chip" (click)="dewormingForm()">
+          <span class="material-symbols-outlined">
+            pest_control
+          </span>
+          <span class="chip-label">Desp.</span>
+        </button>
+
+        <button class="m3-icon-chip">
+          <span class="material-symbols-outlined">
+            restaurant
+          </span>
+          <span class="chip-label">Dietas</span>
+        </button>
+
         <button class="m3-icon-chip active">
           <span class="material-symbols-outlined">
             scale
@@ -95,36 +118,16 @@
           <span class="chip-label">Cons.</span>
         </button>
 
-        <button class="m3-icon-chip">
-          <span class="material-symbols-outlined">
-            restaurant
-          </span>
-          <span class="chip-label">Dietas</span>
-        </button>
-
-        <button class="m3-icon-chip">
-          <span class="material-symbols-outlined">
-            vaccines
-          </span>
-          <span class="chip-label">Vacunas</span>
-        </button>
-
-        <button class="m3-icon-chip">
-          <span class="material-symbols-outlined">
-            pest_control
-          </span>
-          <span class="chip-label">Desp.</span>
-        </button>
       </div>
     </div>
   </div>
 
 
   <!-- FIN CARRUSEL -->
-<div class="contendor-hijo">  
-  <!-- <app-ficha-mascota></app-ficha-mascota> -->
-   <router-outlet></router-outlet>
-</div>
+  <div class="contendor-hijo">
+    <!-- <app-ficha-mascota></app-ficha-mascota> -->
+    <router-outlet></router-outlet>
+  </div>
 
 
 

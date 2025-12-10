@@ -18,6 +18,18 @@ export const PETS_ROUTES2: Routes = [
           import('../../dashboard/dashboard')
             .then(c => c.DashboardComponent)
       },
+      {
+        path: 'vaccine',
+        loadComponent: () =>
+          import('../../vaccine/pages/vaccine-form/vaccine-form')
+            .then(c => c.VaccineForm)
+      },
+      {
+        path: 'deworming',
+        loadComponent: () =>
+          import('../../deworming/pages/dworming-form/dworming-form')
+            .then(c => c.DwormingForm)
+      },
       { path: '', redirectTo: 'ficha', pathMatch: 'full' }
     ]
   }
