@@ -71,7 +71,7 @@ export class FichaMascota  implements OnInit {
 
 
 ngOnInit(): void {
-    const id = Number(this.route.snapshot.paramMap.get('id'));
+      const id = Number(this.route.parent?.snapshot.paramMap.get('id'));  // CAMBIO 🔥
 
     this.nombre = localStorage.getItem('nombre') || '';
     this.apellido = localStorage.getItem('apellido') || '';

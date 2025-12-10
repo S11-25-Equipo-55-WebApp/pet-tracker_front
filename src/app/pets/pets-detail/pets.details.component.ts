@@ -1,5 +1,5 @@
 import { Component, OnInit } from '@angular/core';
-import { ActivatedRoute, Router } from '@angular/router';
+import { ActivatedRoute, Router, RouterOutlet } from '@angular/router';
 import { PetService } from '../pets.service';
 import { SpecieService } from '../../species/species.service';
 import { RaceService } from '../../race/race.service';
@@ -25,7 +25,7 @@ import { FichaMascota } from "../../ficha-mascota/fichaMascota.component";
 @Component({
   selector: 'app-pet-details',
   standalone: true,
-  imports: [MatIcon, CommonModule, FichaMascota],
+  imports: [MatIcon, CommonModule, FichaMascota, RouterOutlet],
   templateUrl: './pets.details.component.html',
   styleUrls: ['./pets.details.component.css']
 })
