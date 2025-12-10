@@ -37,7 +37,7 @@ export interface User {
 }
 
 export interface AuthResponse {
-  usuario:  User;
+  user:  User;
   token: string;
 }
 
