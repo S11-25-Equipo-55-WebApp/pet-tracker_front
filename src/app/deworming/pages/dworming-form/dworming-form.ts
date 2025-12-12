@@ -18,6 +18,7 @@ import { PetService } from '../../../pets/pets.service';
 import { IDeworming } from '../../interface/deworming.interface';
 import { ITypeDeworming } from '../../../typeDeworming/interface/typeDeworming.interface';
 import { IMascota } from '../../../pets/interface/mascota.interface';
+import { ActivatedRoute } from '@angular/router';
 
 @Component({
   selector: 'app-dworming-form',
@@ -46,8 +47,11 @@ export class DwormingForm implements OnInit {
   private readonly dewormingService = inject(DewormingService);
   private readonly typeDewormingService = inject(TypeDewormingService);
   private readonly petService = inject(PetService);
+  private readonly route = inject(ActivatedRoute);
 
   dewormingForm!: FormGroup;
+
+  idMascota!: number;
 
   // Signals para estado reactivo
   isLoading = signal(false);
@@ -60,14 +64,17 @@ export class DwormingForm implements OnInit {
   pets = signal<IMascota[]>([]);
 
   ngOnInit(): void {
-    this.initForm();
-    this.loadTypeDewormings();
-    this.loadPets();
+
+    this.route.parent?.paramMap.subscribe(params => {
+      this.idMascota = Number(params.get('id')!);
+
+      this.initForm();
+      this.loadTypeDewormings();
+    })
   }
 
   private initForm(): void {
     this.dewormingForm = this.fb.group({
-      mascotaId: [null, [Validators.required]],
       tipoDesparacitacionId: [null, [Validators.required]],
       fechaAplicacion: ['', [Validators.required]],
       fechaProxima: ['', [Validators.required]],
@@ -90,19 +97,6 @@ export class DwormingForm implements OnInit {
     });
   }
 
-  private loadPets(): void {
-    this.petService.getPets().subscribe({
-      next: (pets) => {
-        console.log('Mascotas cargadas:', pets);
-        this.pets.set(pets);
-      },
-      error: (error) => {
-        console.error('Error al cargar mascotas:', error);
-        this.showError('Error al cargar mascotas');
-      }
-    });
-  }
-
   onSubmit(): void {
     if (this.dewormingForm.invalid) {
       this.dewormingForm.markAllAsTouched();
@@ -119,7 +113,7 @@ export class DwormingForm implements OnInit {
       fechaAplicacion: this.formatDate(formValue.fechaAplicacion),
       fechaProxima: this.formatDate(formValue.fechaProxima),
       notas: formValue.notas || '',
-      mascotaId: formValue.mascotaId, // Ahora viene del formulario
+      mascotaId: this.idMascota, // Ahora viene del formulario
       tipoDesparacitacionId: formValue.tipoDesparacitacionId
     };
 
@@ -129,7 +123,7 @@ export class DwormingForm implements OnInit {
       next: () => {
         this.isSaving.set(false);
         this.showSuccess('Desparasitación registrada exitosamente');
-        this.router.navigate(['/deworming']);
+        this.router.navigate([`/pet-details/${this.idMascota}/ficha`]);
       },
       error: (error) => {
         console.error('❌ Error al guardar desparasitación:', error);

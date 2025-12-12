@@ -88,6 +88,7 @@ ngOnInit(): void {
         this.cargarRaza(this.raceId);
         this.vaccinesByPetId(this.idMascota);
         this.DewormingsByPetId(this.idMascota);
+        this.DietByPetId(this.idMascota);
       }
     });
   }

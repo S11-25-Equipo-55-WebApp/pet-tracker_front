@@ -6,7 +6,7 @@
       <mat-icon>arrow_back</mat-icon>
     </button>
 
-    <div class="user-name">{{nombre}} y {{apellido}} User</div>
+    <div class="user-name">{{nombre}} {{apellido}}</div>
 
     <button class="icon-btn">
       <mat-icon>menu</mat-icon>
@@ -30,7 +30,7 @@
   </div>
 
   <!-- Button -->
-  <button class="register-btn" routerLink="/pets/register">
+  <button class="register-btn" (click)="createPet()">
     <mat-icon>add</mat-icon>
     Registrar
   </button>

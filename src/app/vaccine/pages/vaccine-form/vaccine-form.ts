@@ -18,6 +18,7 @@ import { PetService } from '../../../pets/pets.service';
 import { IVaccine } from '../../interface/vaccine.interface';
 import { ITypeVaccine } from '../../../typeVaccine/interface/typeVaccine.interface';
 import { IMascota } from '../../../pets/interface/mascota.interface';
+import { ActivatedRoute } from '@angular/router';
 
 @Component({
   selector: 'app-vaccine-form',
@@ -39,30 +40,37 @@ import { IMascota } from '../../../pets/interface/mascota.interface';
   changeDetection: ChangeDetectionStrategy.OnPush,
 })
 export class VaccineForm implements OnInit {
-  
+
   private readonly fb = inject(FormBuilder);
   private readonly router = inject(Router);
   private readonly snackBar = inject(MatSnackBar);
   private readonly vaccineService = inject(VaccineService);
   private readonly typeVaccineService = inject(TypeVaccineService);
   private readonly petService = inject(PetService);
+  private readonly route = inject(ActivatedRoute);
 
   vaccineForm!: FormGroup;
-  
+
+  idMascota!: number;
+
   // Signals para estado reactivo
   isLoading = signal(false);
   isSaving = signal(false);
   hasError = signal(false);
   errorMessage = signal('');
-  
+
   // Signals para datos
   typeVaccines = signal<ITypeVaccine[]>([]);
   pets = signal<IMascota[]>([]);
 
   ngOnInit(): void {
-    this.initForm();
-    this.loadTypeVaccines();
-    this.loadPets();
+
+    this.route.parent?.paramMap.subscribe(params => {
+      this.idMascota = Number(params.get('id')!);
+
+      this.initForm();
+      this.loadTypeVaccines();
+    })
   }
 
   private initForm(): void {
@@ -71,7 +79,7 @@ export class VaccineForm implements OnInit {
       fechaAplicacion: ['', [Validators.required]],
       fechaProxima: ['', [Validators.required]],
       notas: ['', [Validators.maxLength(500)]],
-      mascotaId: [null, [Validators.required]],
+      //mascotaId: [null, [Validators.required]],
       tipoVacunaId: [null, [Validators.required]]
     });
   }
@@ -91,19 +99,6 @@ export class VaccineForm implements OnInit {
     });
   }
 
-  private loadPets(): void {
-    this.petService.getPets().subscribe({
-      next: (pets) => {
-        console.log('Mascotas cargadas:', pets);
-        this.pets.set(pets);
-      },
-      error: (error) => {
-        console.error('Error al cargar mascotas:', error);
-        this.showError('Error al cargar mascotas');
-      }
-    });
-  }
-
   onSubmit(): void {
     if (this.vaccineForm.invalid) {
       this.vaccineForm.markAllAsTouched();
@@ -114,13 +109,13 @@ export class VaccineForm implements OnInit {
     this.isSaving.set(true);
 
     const formValue = this.vaccineForm.value;
-    
+
     const vaccineData: IVaccine = {
       codigo: '',
       fechaAplicacion: this.formatDate(formValue.fechaAplicacion),
       fechaProxima: this.formatDate(formValue.fechaProxima),
       notas: formValue.notas || '',
-      mascotaId: formValue.mascotaId,
+      mascotaId: this.idMascota,
       tipoVacunaId: formValue.tipoVacunaId
     };
 
@@ -128,7 +123,7 @@ export class VaccineForm implements OnInit {
       next: () => {
         this.isSaving.set(false);
         this.showSuccess('Vacuna registrada exitosamente');
-        this.router.navigate(['/vaccines']);
+        this.router.navigate([`/pet-details/${this.idMascota}/ficha`]);
       },
       error: (error) => {
         console.error('Error al guardar vacuna:', error);

@@ -16,6 +16,7 @@ import { PetService } from '../../../pets/pets.service';
 import { IDiet } from '../../interface/diet.interface';
 import { ITypeFood } from '../../../typeFood/interface/typeFood.interface';
 import { IMascota } from '../../../pets/interface/mascota.interface';
+import { ActivatedRoute } from '@angular/router';
 
 @Component({
   selector: 'app-diet-form',
@@ -42,8 +43,11 @@ export class DietForm implements OnInit {
   private readonly dietService = inject(DietService);
   private readonly typeFoodService = inject(TypeFoodService);
   private readonly petService = inject(PetService);
+  private readonly route = inject(ActivatedRoute);
 
   dietForm!: FormGroup;
+
+  idMascota! : number;
   
   // Signals para estado reactivo
   isLoading = signal(false);
@@ -63,9 +67,13 @@ export class DietForm implements OnInit {
   ]);
 
   ngOnInit(): void {
-    this.initForm();
-    this.loadTypeFoods();
-    this.loadPets();
+
+    this.route.parent?.paramMap.subscribe(params => {
+      this.idMascota = Number(params.get('id')!);
+
+      this.initForm();
+      this.loadTypeFoods();
+    })
   }
 
   private initForm(): void {
@@ -73,7 +81,6 @@ export class DietForm implements OnInit {
       codigo: [""],
       porcionDia: [null, [Validators.required, Validators.min(1), Validators.pattern('^[0-9]+$')]],
       notas: ["", [Validators.maxLength(500)]],
-      mascotaId: [null, [Validators.required]],
       tipoAlimentoId: [null, [Validators.required]],
       unidadMedidaId: [null, [Validators.required]]
     });
@@ -94,19 +101,6 @@ export class DietForm implements OnInit {
     });
   }
 
-  private loadPets(): void {
-    this.petService.getPets().subscribe({
-      next: (pets) => {
-        console.log('Mascotas cargadas:', pets);
-        this.pets.set(pets);
-      },
-      error: (error) => {
-        console.error('Error al cargar mascotas:', error);
-        this.showError('Error al cargar mascotas');
-      }
-    });
-  }
-
   onSubmit(): void {
     if (this.dietForm.invalid) {
       this.dietForm.markAllAsTouched();
@@ -122,7 +116,7 @@ export class DietForm implements OnInit {
       codigo: "DW-" + Date.now(),
       porcionDia: parseInt(formValue.porcionDia, 10),
       notas: formValue.notas || "",
-      mascotaId: formValue.mascotaId,
+      mascotaId: this.idMascota,
       tipoAlimentoId: formValue.tipoAlimentoId,
       unidadMedidaId: formValue.unidadMedidaId
     };
@@ -134,7 +128,7 @@ export class DietForm implements OnInit {
       next: () => {
         this.isSaving.set(false);
         this.showSuccess('Dieta registrada exitosamente');
-        this.router.navigate(['/diets']);
+        this.router.navigate([`/pet-details/${this.idMascota}/ficha`]);
       },
       error: (error) => {
         console.log('Error al guardar dieta:', error);

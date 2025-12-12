@@ -63,6 +63,18 @@ export class PetsDetailsComponent implements OnInit {
     this.router.navigate(['/pets']);
   }
 
+  vaccineForm() {
+    this.router.navigate([`/pet-details/${this.idMascota}/vaccine`]);
+  }
+
+  dewormingForm() {
+    this.router.navigate([`/pet-details/${this.idMascota}/deworming`]);
+  }
+
+  dietForm() {
+    this.router.navigate([`/pet-details/${this.idMascota}/diet`]);
+  }
+
   abrirCalendario() {
     const dialogRef = this.dialog.open(CalendarDialogComponent, {
       width: '320px',
@@ -80,12 +92,12 @@ export class PetsDetailsComponent implements OnInit {
   }
 
   ngOnInit(): void {
-    const id = Number(this.route.snapshot.paramMap.get('id'));
+    const idMascota = Number(this.route.snapshot.paramMap.get('id'));
 
     this.nombre = localStorage.getItem('nombre') || '';
     this.apellido = localStorage.getItem('apellido') || '';
 
-    this.petService.getPetById(id).subscribe({
+    this.petService.getPetById(idMascota).subscribe({
       next: (res) => {
         this.pet = res;
 

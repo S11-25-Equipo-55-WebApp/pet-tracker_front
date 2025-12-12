@@ -17,9 +17,13 @@ export const routes: Routes = [
       import('./pets/pets-detail/pets.details.routes').then(m => m.PETS_ROUTES2)
   },
   {
+    path: 'pets/create',
+    loadChildren: () =>
+      import('./pets/pages/pet-form/pet-form.routes').then(m => m.PETS_CREATE)
+  },
+  {
     path: '',
     redirectTo: 'auth',
     pathMatch: 'full'
   },
 ];
-
