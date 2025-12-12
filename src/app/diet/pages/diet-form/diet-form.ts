@@ -128,7 +128,7 @@ export class DietForm implements OnInit {
       next: () => {
         this.isSaving.set(false);
         this.showSuccess('Dieta registrada exitosamente');
-        this.router.navigate(['/diets']);
+        this.router.navigate([`/pet-details/${this.idMascota}/ficha`]);
       },
       error: (error) => {
         console.log('Error al guardar dieta:', error);

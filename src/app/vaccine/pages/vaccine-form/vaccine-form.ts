@@ -123,7 +123,7 @@ export class VaccineForm implements OnInit {
       next: () => {
         this.isSaving.set(false);
         this.showSuccess('Vacuna registrada exitosamente');
-        this.router.navigate(['/vaccines']);
+        this.router.navigate([`/pet-details/${this.idMascota}/ficha`]);
       },
       error: (error) => {
         console.error('Error al guardar vacuna:', error);

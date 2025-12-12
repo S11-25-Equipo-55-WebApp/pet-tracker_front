@@ -1,0 +1,160 @@
+<div class="screen">
+
+  <!-- Header -->
+  <div class="header">
+    <button class="icon-btn" (click)="volver()">
+      <mat-icon>arrow_back</mat-icon>
+    </button>
+
+    <div class="user-name">{{nombre}} {{apellido}} </div>
+
+    <button class="icon-btn">
+      <mat-icon>menu</mat-icon>
+    </button>
+  </div>
+
+  <!-- Title -->
+  <div class="title-section">
+    <img src="/images/logo.png" class="title-icon" alt="">
+    <h2 class="title">Mis mascotas</h2>
+    <span class="subtitle">Registrar una mascota</span>
+  </div>
+
+  <div class="pets-form-container">
+    <main class="main-content">
+      <form [formGroup]="petsForm" (ngSubmit)="onSubmit()" class="pets-form">
+
+
+        <!-- Nombre -->
+        <div class="form-group">
+          <mat-form-field appearance="outline" class="full-width">
+            <mat-label>Nombre</mat-label>
+            <input matInput type="text" formControlName="nombre" placeholder="Ingrese el nombre de la mascota">
+            <mat-icon matPrefix>scale</mat-icon>
+            @if (nombreInvalid) {
+            <mat-error>El nombre de la mascota es requerido</mat-error>
+            }
+          </mat-form-field>
+        </div>
+
+        <!-- Especie Select -->
+        <div class="form-group">
+          <mat-form-field appearance="outline" class="full-width">
+            <mat-label>Especie</mat-label>
+            <mat-select formControlName="especieId" placeholder="Seleccione la especie">
+              @for (type of species(); track type.especieId) {
+              <mat-option [value]="type.especieId">{{ type.nombre }}</mat-option>
+              }
+            </mat-select>
+            <mat-icon matPrefix>pets</mat-icon>
+            @if (especieIdInvalid) {
+            <mat-error>La especie es requerida</mat-error>
+            }
+          </mat-form-field>
+        </div>
+
+        <!-- Raza Select -->
+        <div class="form-group">
+          <mat-form-field appearance="outline" class="full-width">
+            <mat-label>Raza</mat-label>
+            <mat-select formControlName="razaId" placeholder="Seleccione la raza">
+              @for (type of races(); track type.razaId) {
+              <mat-option [value]="type.razaId">{{ type.nombre }}</mat-option>
+              }
+            </mat-select>
+            <mat-icon matPrefix>pets</mat-icon>
+            @if (razaIdInvalid) {
+            <mat-error>La raza es requerida</mat-error>
+            }
+          </mat-form-field>
+        </div>
+
+        <!-- Fecha de nacimiento -->
+        <div class="form-group">
+          <mat-form-field appearance="outline" class="full-width">
+            <mat-label>Fecha de nacimiento</mat-label>
+            <input matInput [matDatepicker]="pickerAplicacion" formControlName="fechaNacimiento" placeholder="dd/mm/aa">
+            <mat-datepicker-toggle matIconSuffix [for]="pickerAplicacion"></mat-datepicker-toggle>
+            <mat-datepicker #pickerAplicacion></mat-datepicker>
+            <mat-icon matPrefix>event</mat-icon>
+            @if (fechaNacimientoInvalid) {
+            <mat-error>La fecha de nacimiento es requerida</mat-error>
+            }
+          </mat-form-field>
+        </div>
+
+        <!-- <input type="file" (change)="onFileSelected($event)">
+        <button type="button" (click)="upload()">Subir</button>
+        <img *ngIf="uploadedUrl" [src]="uploadedUrl" width="200"> -->
+
+        <div class="form-group">
+          <div class="file-upload-container">
+
+            <!-- Botón estilizado que abre el input -->
+            <label class="custom-file-label" for="fileInput">
+              <mat-icon>upload</mat-icon>
+              Seleccionar imagen
+            </label>
+
+            <input id="fileInput" type="file" (change)="onFileSelected($event)" />
+
+            <!-- Botón de subir con spinner -->
+            <button type="button" class="upload-btn" (click)="upload()" [disabled]="isSaving()">
+              @if (isSaving()) {
+              <mat-spinner diameter="20"></mat-spinner>
+              } @else {
+              <ng-container>
+                <mat-icon>save</mat-icon>
+                Guardar
+              </ng-container>
+              }
+            </button>
+
+          </div>
+
+          <img *ngIf="uploadedUrl" [src]="uploadedUrl" width="200" class="preview-img" />
+        </div>
+
+
+        <!-- Buttons -->
+        <div class="form-actions">
+          <button mat-stroked-button type="button" (click)="resetForm()" [disabled]="isSaving()">
+            <mat-icon>refresh</mat-icon>
+            Limpiar
+          </button>
+
+          <button mat-flat-button color="primary" type="submit" [disabled]="isSaving() || petsForm.invalid">
+            @if (isSaving()) {
+            <mat-spinner diameter="20"></mat-spinner>
+            } @else {
+            <ng-container>
+              <mat-icon>save</mat-icon>
+              Guardar
+            </ng-container>
+            }
+          </button>
+        </div>
+
+      </form>
+    </main>
+  </div>
+</div>
+
+
+
+
+<!-- Bottom Navigation -->
+<nav class="bottom-nav">
+  <button class="nav-item" aria-label="Inicio">
+    <mat-icon matSuffix>home</mat-icon>
+  </button>
+  <button class="nav-item" aria-label="Usuarios">
+    <mat-icon matSuffix>pets</mat-icon>
+  </button>
+  <button class="nav-item" aria-label="Perfil">
+    <mat-icon matSuffix>3p</mat-icon>
+  </button>
+  <button class="nav-item" aria-label="Galería">
+    <mat-icon matSuffix>person</mat-icon>
+  </button>
+</nav>

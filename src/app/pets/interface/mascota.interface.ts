@@ -1,13 +1,15 @@
 export interface IMascota {
-peso: any;
-sexo: any;
-razaNombre: any;
+    razaNombre?: any;
     mascotaId?: number;
     nombre: string;
     codigo?: string;
-    fechaNacimiento: string,
+    fechaNacimiento: string;
     especieId: number;
     razaId: number;
-    fotoMascota: string;
+    fotoMascota?: string;
     usuarioId: number;
+}
+
+export interface IFoto{
+
 }

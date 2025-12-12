@@ -65,4 +65,14 @@ export class PetService {
         console.error("Error en la petición:", error);
         return throwError(() => new Error("Error al comunicarse con el servidor"));
     }
+
+    uploadFile(file: File): Observable<{ url: string, publicId: string }> {
+        const formData = new FormData();
+        formData.append("file", file);
+
+        return this.http.post<{ url: string, publicId: string }>(
+            `http://pettrakerapi.runasp.net/api/Cloudinary/image`,
+            formData
+        );
+    }
 }

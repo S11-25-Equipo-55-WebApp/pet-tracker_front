@@ -24,6 +24,10 @@ export class PetsListComponent implements OnInit {
     this.router.navigate(['/pet-details', id]);
   }
 
+  createPet() {
+    this.router.navigate(['/pets/create']);
+  }
+
   nombre: string = " ";
   apellido: string = " ";
 
